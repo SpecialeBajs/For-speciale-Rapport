@@ -1,0 +1,15 @@
+\section{Equal data}
+When measuring the performance of the different methods it is essential that the datasets are the same.
+Without them being equal the results of the experiments wont be worth comparing.
+Both Price Aware and Light GCN utilized the yelp dataset according to their papers.
+We did not get the dataset from the Price Aware implementation and were unable to find the original yelp-2018 dataset from the Light GCN implementation were the price and category was still attached.
+We therefore decided to utilize the yelp-2020 dataset, in which users rank businesses between 1 to 5 starts.
+Inspired by the Price Aware method we also decided to only use businesses with the restaurant category.
+What is left is set of businesses with one or more subcategories that relate to what type of restaurant they are.
+Like Price Aware we cut of any extra subcategories so that each business now only has one subcategory, which we will refer to as the item's category from now on.
+\\
+Price Aware has a 60\% training-, 20\% validation- and 20\% test-data split while Light GCN has a 70\% training-, 10\% validation-, and 20\% test-data split.
+It was decided to use the Light GCN split since this was the method we planned to extend.
+\\
+After this we now have a dataset that can be used to compare the different methods with or without category and price.
+
