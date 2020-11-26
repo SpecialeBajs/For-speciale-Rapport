@@ -1,0 +1,13 @@
+\section{Embeddings comparison}
+\subsection{Price-aware recommendation}
+When creating the embeddings in price-aware recommendation the two required inputs are the feature matrixes, which is an identity matrix of size total number of nodes $\times$ total number of nodes, and the adjacency matrix.
+The feature matrix is multiplied with with weights, which are initialized as random values of feature size and embedding size, which are hyper parameters.
+The result is then multiplied with the adjacency matrix and bias is added.
+The result is then passed through the tanh activation function.
+Using this matrix, they are able to decode this by extracting the embeddings for users, items, categories and prices.
+
+\subsection{LightGCN}
+The embeddings in LightGCN for user and item are concatenated to one embedding.
+This embedding are multiplied with the adjacency matrix and the result of that is again multiplied with the adjacency matrix n number of times.
+This basically creates graph convolutions, as the nodes will reach one further step for each iteration.
+Finally the embedding is split into two embedding of user embedding and item embeddings.
