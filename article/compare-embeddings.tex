@@ -1,6 +1,6 @@
 \section{Embeddings comparison}
 \subsection{Price-aware recommendation}
-When creating the embeddings in price-aware recommendation the two required inputs are the feature matrices, which are the adjacency matrix, and an identity matrix with the size n  $\times$ n where n is the total number of nodes.
+When creating the embeddings in price-aware recommendation the two required inputs are the feature matrices, which are the adjacency matrix, and an identity matrix with the size n $\times$ n where n is the total number of nodes.
 The identity matrix is multiplied with weights, which is a matrix of size feature size $\times$ embedding size. 
 Feature and embedding size are hyper parameters and the values in weights are normalized random values.
 The result is then multiplied with the adjacency matrix and the bias is added.
