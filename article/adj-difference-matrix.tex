@@ -1,5 +1,5 @@
 \subsection{Generated adjacency matrix}
-In the following subsection the generated adjacency matrix of LightGCN and price aware recommendation are described.
+In the following subsection the generated adjacency matrices of LightGCN and price aware recommendation are described.
 
 \subsection{LightGCN}
 For LightGCN the adjacency matrix is the size of $\textrm{number of users} + \textrm{number of items} \times \textrm{number of users} + \textrm{number of items}$.
@@ -16,4 +16,3 @@ For column at the same indexes as the row the category is inserted and the price
 A third array is created with the length of row where ones are inserted. 
 Using this array, column and row price aware recommendation create a sparse adjacency matrix by mapping the index $i$ in row and column to the array with ones.
 Within the adjacency matrix, there will be inserted 1 if there is a connection between item $i$ and user $u$, item $i$ and category $c$, and item $i$ and price $p$.
-
