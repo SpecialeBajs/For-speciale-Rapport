@@ -1,6 +1,27 @@
 \section{Experiment}
 
 \section{Simple price aware extension of LightGCN}
-To see the extension of LightGCN, we compare Price-Aware Recommendation, LightGCN and the adapted LightGCN with Price and category nodes in the input data. 
+To investigate the extension of LightGCN, we compare Price-Aware Recommendation, LightGCN, GCN, NGCF, GCMC with the adapted LightGCN with Price and category nodes in the input data.
 The hyperparameter $X$ is tested with the values of $0.0$, $0.5$, $1.0$ and $2.0$ to see the effect of this as input data has on the final result.
-The larger the hyperparameters value is, the larger effect the nodes of category and price would have on the final result.
+The larger the hyperparameters value is, the larger effect the nodes of category and price should have on the final result.
+\begin{table*}[h!]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \rowcolor[HTML]{FFFFFF}
+                  & \multicolumn{4}{l|}{\cellcolor[HTML]{FFFFFF}Yelp Dataset}                                   \\ \hline
+        Method    & Recall@50                                                 & NDCG@50 & Recall@100 & NDCG@100 \\ \hline
+        LightGCN  & 0.2106                                                    & 0.1063  & 0.3176     & 0.1344   \\ \hline
+        GCN       & 0.1558                                                    & 0.07593 & 0.2442     & 0.1001   \\ \hline
+        NGCF      & 0.1810                                                    & 0.08817 & 0.2769     & 0.1132   \\ \hline
+        GCMC      & 0.1692                                                    & 0.0835  & 0.2497     & 0.1008   \\ \hline
+        PAS (0.0) &                                                           &         &            &          \\ \hline
+        PAS (0.5) &                                                           &         &            &          \\ \hline
+        PAS (1.0) & 0.1542                                                    & 0.0717  & 0.2199     & 0.086    \\ \hline
+        PAS (2.0) &                                                           &         &            &          \\ \hline
+    \end{tabular}
+    \caption{Results for the experiment.}
+    \label{tab:results}
+\end{table*}
+As can be seen on \autoref{tab:results} inserting categories and price into the adjacency matrix decreases the performance overall on LightGCN.
+Having
