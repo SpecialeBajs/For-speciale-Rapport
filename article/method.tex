@@ -1,32 +1,55 @@
 \section{Method}
-
+This section describes LightGCN, NGCF and price-aware recommendation.
+The difference between these recommendation models are described with focus on the adjacency matrix and the embeddings.
+An attempt at implementing price aware recommendation in LightGCN and NGCF is also attempted, where the focus is on changing the input parameters.
+\input{article/lightgcn.tex}
+\input{article/price-aware.tex}
 \input{article/adj-difference-matrix.tex}
 \input{article/compare-embeddings.tex}
-
+\input{article/pas.tex}
 \subsection{Simple price aware extension of LightGCN}\label{subsec:simple-extension}
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figures/uipc.png}
-    \caption{Illustration of the nodes in the simple extension of LightGCN.}   
+    \caption{Illustration of the nodes in the simple extension of LightGCN.}
     \label{fig:uipc}
 \end{figure}
 We try to extend the implementation of LightGCN by changing the input parameters, where we construct the adjacency matrix containing the users, item, category and price graph, which is illustrated in \autoref{fig:uipc}.
 The intuition behind the idea, is that the graph convolutions will capture the values of categories and price, so even if we do not use the embeddings for price and category, they will still influence users and items.
 Let the user-item, item-price and item-category interactions matrix be $R \in \mathbb{R}^{I \times U + C + P}$, where $I$ denotes the number of items, $U, C, P$ denotes the number of users, categories and prices.
 Each entry of $R_{ui}$ is 1 if user $u$ has rated item $i$. Otherwise it is 0.
-If there is a connection in $R_{ic}$ or $R_{ip}$ this value is a hyperparameter $X$ with a value $x>0$, otherwise it is 0. 
+If there is a connection in $R_{ic}$ or $R_{ip}$ this value is a hyperparameter $X$ with a value $x>0$, otherwise it is 0.
 The adjacency matrix is obtained as follows:
 \begin{gather}
-    A = 
+    A =
     \begin{bmatrix}
-        0 & R \\
+        0   & R \\
         R^T & 0
     \end{bmatrix}
 \end{gather}
 The embeddings for users and price are calculated as follows,
 \begin{equation}
-    E^{(k+1)} = (D^{\frac{1}{2}}AD^{\frac{1}{2}}E^{(k)}),
+    E^{(k+1)} = D^{\frac{1}{2}}AD^{\frac{1}{2}}E^{(k)},
 \end{equation}
-where $A$ is the adjacency matrix containing users, items, categories and price, and $D$ is a $(I + U + C + P)$ diagonal matrix, where $D_{ii}$ denotes the sum of the $i-th$ row in the adjacency matrix $A$. 
+where $A$ is the adjacency matrix containing users, items, categories and price, and $D$ is a $(I + U + C + P)$ diagonal matrix, where $D_{ii}$ denotes the sum of the $ith$ row in the adjacency matrix $A$.
 The $0th$ layer embedding $E^{(0)} \in R^{(I + U + C + P)\times T}$, where $T$ is the embedding size.
 We do not change anything else in LightGCN in this method.
+
+\subsection{Simple price aware extension of NGCF}
+To gain an understanding of the effect of feature transformation and nonlinear activation functions a price aware extension has also been added to NGCF.
+The embeddings for users and price are calculated as follows:
+\begin{equation}
+    \begin{split}
+        E^{(l)} = &LeakyReLU((\lambda + I)E^{(l-1)}W_1^{(l)}+\\
+        & \lambda E^{(l-1)}\bigodot E^{(l-1)}W_2^{(l))},
+    \end{split}
+\end{equation}
+where $E^{(l)} \in \mathbb{R}^{I+U+C+P \times T}$ are the item, user, price, and category embedding after $l$ convolutions.
+$E^{(0)} \in \mathbb{R}^{I+U+C+P \times T}$ is the $0th$ layer embedding, where $T$ is the embedding size.
+$I$ is the identity matrix.
+$W_1^{(l)}$ and $W_2^{(l)}$ are trainable weight matrices.
+$\lambda$ is the Laplacian matrix for the user-item, item-price and item-category graph, and is defined as follows:
+\begin{equation}
+    \lambda = D^{\frac{1}{2}}AD^{\frac{1}{2}},
+\end{equation}
+where $A$ and $D$ are the adjacency and diagonal matrix, which were constructed as in \autoref{subsec:simple-extension}.
