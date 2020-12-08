@@ -1,2 +1,20 @@
 \section{Introduction}
-\lettrine[nindent=0em,lines=3]{L} orem ipsum dolor sit amet, consectetur adipiscing elit \cite{GCN-for-webscale-Recommender}.
+Recommendation systems are widely being used to help users browsing on the internet attenuate information overload\cite{YT_rec,Pint_rec}.
+The general idea behind a recommendation system is to predict whether a user will interact with a given item, e.g. purchase, rate, watch, based upon their historical data with similar items.
+Collaborative filtering (CF) tackles this problem by assuming that users with similar preferences on some items can be used to recommend eachother additional items.
+The key functionality behind CF models is to first embed users and items which transforms them to a vectorized presentation.
+Secondly, then by using the embedding the historical interactions can be reconstructed.
+\\
+A very common way of doing CF is by doing Matrix Factorization (MF) as will be explained in \autoref{bsc::MF}.
+Though MF models have shown to perform quite well \cite{NGCF_2019} proposes Neural Graph Collaborative Filtering (NGCF).
+\\ 
+NGCF argues that earlier models do not integrate the user-item interactions especialy the bipartite graph structure in their embeddings.
+Therefore missing out on collaborative signals which could aid in recommendation.
+By utilizing a Graph Convolutional Network (GCN) they are able to achieve great performance compared to other baselines.
+\\
+GCN's has become the new state-of-the-art for CF but the reason of their effectiveness is not fully understood\cite{lightgcn}.
+Through empirical testing \cite{lightgcn} shows that feature transformation and nonlinearactivation, the two most common designs in GCN's, do very little to contribute to more accurate predictions.
+They then go on to propose a simple implementation of GCN called LightGCN which achieves even better performance than its more complex GCN counter parts.
+\\
+Looking at papers such as \cite{Priceaware} it can be seen that propagating the influence of price on users with items as a bridge, aswell as integrating category into the propagation progress increases the performance.
+Since \cite{Priceaware} also utilizes a GCN our idea is to improve the performance of the LightGCN framework by utlizing price and category.
