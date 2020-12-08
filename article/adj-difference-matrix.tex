@@ -5,7 +5,7 @@ Both use the adjacency matrix as a representation for a heterogeneous graph, whe
 \subsection{LightGCN}
 For LightGCN the adjacency matrix is the size of $\textrm{number of users} + \textrm{number of items} \times \textrm{number of users} + \textrm{number of items}$.
 Then for every connection between item $i$ and user $u$ 1 is inserted.
-It is generated with SciPy that creates a dictionary of keys, where two keys indicate the position in the matrix, and the value is 1 if there is a connection. 
+It is generated with SciPy that creates a dictionary of keys, where two keys indicate the position in the matrix, and the value is 1 if there is a connection.
 
 \subsection{Price-aware recommendation}
 The adjacency matrix in price-aware recommendation is also implemented as a sparse matrix using SciPy.
