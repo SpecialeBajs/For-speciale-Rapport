@@ -32,8 +32,8 @@ The $0th$ layer embedding $E^{(0)} \in R^{(I + U + C + P)\times T}$, where $T$ i
 We do not change anything else in LightGCN in this method.
 
 \subsection{Simple price aware extension of NGCF}
-To gain an understanding of the effect of feature transformation and nonlinear activation function a price aware extension has also been added to NGCF.
-The embeddings for user and price are calculated as follows:
+To gain an understanding of the effect of feature transformation and nonlinear activation functions a price aware extension has also been added to NGCF.
+The embeddings for users and price are calculated as follows:
 \begin{equation}
     \begin{split}
         E^{(l)} = &LeakyReLU((\lambda + I)E^{(l-1)}W_1^{(l)}+\\
