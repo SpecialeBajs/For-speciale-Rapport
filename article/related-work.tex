@@ -1,7 +1,7 @@
 \section{Related work}
 
 \subsection{Light GCN}
-In the paper \textit{LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation} Xiangnan et al. investigate the effect of feature transformation and nonlinear activation within collaborative filtering using Neural Graph Collaborative Filtering (NGCF) \cite{lightgcn}.
+In LightGCN Xiangnan et al. investigate the effect of feature transformation and nonlinear activation within collaborative filtering using Neural Graph Collaborative Filtering (NGCF) \cite{lightgcn}.
 NGCF is a framework developed by Wang et al. \cite{NGCF_2019} that utilizes Graph Neural Network with three components in the framework: (1) an embedding layer that constructs initial user - and item embeddings; (2) embedding propagation layers that captures CF with the two operations of message construction and message aggregation; (3) a prediction layer that concatenates the embeddings at each layer for each user and for each item such that $e_{u}^{(*)} = e_{u}^{(0)}||...||e_{u}^{(l)}$ and $e_{i}^{(*)} = e_{i}^{(0)}||...||e_{i}^{(l)}$ where $u$ indicates the user, $i$ indicates the item, $e$ is the embedding and $l$ is the layer.
 Within the second component of message construction the message embedding is implemented as:
 \begin{equation}
