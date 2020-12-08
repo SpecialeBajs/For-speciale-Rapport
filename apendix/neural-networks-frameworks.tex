@@ -1,5 +1,5 @@
 \section{Python libraries for implementing neural networks}
-During this project we examined two implementations of recommendation systems which were LightGCN and Price aware recommendation with graph convolutional networks(PUP). 
+During this project, we examined two implementations of recommendation systems which were LightGCN and Price aware recommendation with graph convolutional networks(PUP). 
 The implementations are different from each other because they use different libraries when implementing the neural networks.
 LightGCN uses TensorFlow and PUP uses PyTorch.
 
@@ -7,7 +7,7 @@ LightGCN uses TensorFlow and PUP uses PyTorch.
 PyTorch has an object-oriented approach to creating neural networks.
 A lot of the implementation is already done for you and you for the most part just need to set up the boilerplate code.
 You start by creating a class that inherits from a class in PyTorch called \textit{nn.module}.
-In the constructor of the class you initialize all of the parameters in the network as tensors from PyTorch.
+In the constructor of the class, you initialize all of the parameters in the network as tensors from PyTorch.
 Finally you have to implement the forward function of the network which is used to process the input through the network.
 The backward function that computes the gradients is already implemented.
 After you have called the network with a given input you then can call the \textit{backward} function on the result to backpropagate the error.
@@ -15,7 +15,7 @@ PyTorch also has implementations of different update rules which can be used thr
 
 \begin{lstlisting}[language=Python]
 	import torch
-	import toch.nn.Parameter import Parameter
+	import torch.nn.Parameter import Parameter
 
 	class NeuralNet(torch.nn.module):
 		def __init__(self):
@@ -58,12 +58,12 @@ PyTorch also has implementations of different update rules which can be used thr
 Implementing a neural network in TensorFlow is very different from implementing a neural network in PyTorch.
 TensorFlow does not use an object-oriented approach so you have to define everything manually.
 You start by defining every variable that will be present in the neural network.
-This might be the size of the input layer, hidden layers and output layers.
+This might be the size of the input layer, hidden layers and output layer.
 If you don't have a value to insert for them you still need to define placeholders so that TensorFlow has an idea of the shape and type of them.
 After defining all of the variables you need to define the cost of the neural networks and the optimizer which can be the back propagating algorithm.
 Just like in PyTorch TensorFlow has some optimizers that are already implemented for you. 
-After you have defined all of the variables in you neural network you can initialize all of them by calling \textit{$initialize_all_variables$}.
-You can then start a training sessions by instantiating the Session class in TensorFlow.
+After you have defined all of the variables in your neural network you can initialize all of them by calling \textit{$initialize_all_variables$}.
+You can then start a training session by instantiating the Session class in TensorFlow.
 To start training you the call run function on the session object with the initialized variables.
 From here you can start training by calling the run function again with the input data, the cost and the optimizer.
 Every time we pass some input through the neural network with a cost and an optimizer it will back propagate and update the weights in the neural network.
