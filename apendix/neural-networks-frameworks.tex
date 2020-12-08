@@ -62,7 +62,7 @@ This might be the size of the input layer, hidden layers and output layer.
 If you don't have a value to insert for them you still need to define placeholders so that TensorFlow has an idea of the shape and type of them.
 After defining all of the variables you need to define the cost of the neural networks and the optimizer which can be the back propagating algorithm.
 Just like in PyTorch TensorFlow has some optimizers that are already implemented for you. 
-After you have defined all of the variables in your neural network you can initialize all of them by calling \textit{$initialize_all_variables$}.
+After you have defined all of the variables in your neural network you can initialize all of them by calling \textit{$initialize\_all\_variables$}.
 You can then start a training session by instantiating the Session class in TensorFlow.
 To start training you the call run function on the session object with the initialized variables.
 From here you can start training by calling the run function again with the input data, the cost and the optimizer.
