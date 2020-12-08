@@ -44,8 +44,8 @@ The embeddings for users and price are calculated as follows:
         & \lambda E^{(l-1)}\bigodot E^{(l-1)}W_2^{(l))},
     \end{split}
 \end{equation}
-where $E^{(l)} \in \mathbb{R}^{N+M+P+C}$ are the user, item, price, and category embedding after $l$ convolutions.
-$E^{(0)} \in \mathbb{R}^{N+M+P+C} \times T$ is the $0th$ layer embedding, where $T$ is the embedding size.
+where $E^{(l)} \in \mathbb{R}^{I+U+C+P \times T}$ are the item, user, price, and category embedding after $l$ convolutions.
+$E^{(0)} \in \mathbb{R}^{I+U+C+P \times T}$ is the $0th$ layer embedding, where $T$ is the embedding size.
 $I$ is the identity matrix.
 $W_1^{(l)}$ and $W_2^{(l)}$ are trainable weight matrices.
 $\lambda$ is the Laplacian matrix for the user-item, item-price and item-category graph, and is defined as follows:
