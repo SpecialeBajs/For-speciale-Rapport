@@ -1,0 +1,18 @@
+\section{Adjacency implementation}\label{app:adj-impl}
+The implementations of the adjacency matrix in LightGCN and Price-aware recommendation are described in this section.
+
+\subsection{LightGCN}
+The adjacency matrix is implemented as a sparse matrix using SciPy that creates a dictionary of keys, where two keys indicate the position in the matrix, and the value is 1 if there is a connection.
+
+\subsection{Price-aware recommendation}
+The adjacency matrix in price-aware recommendation is also implemented as a sparse matrix using SciPy.
+This is done by creating two arrays, row and column.
+The row and column are both the length of all interactions plus two times the amount of items.
+We start by for each user inserting their id as many times to the array as the number of items that they have interacted with.
+The id's of the items that the user interacted with are mapped to the corresponding index in the column array.
+After all user item interactions have been mapped to the row and column arrays, the item prices and category relationships are mapped to the arrays.
+This is done by inserting the index of an item into the row twice.
+At the indexes where the item was added to the row, the corresponding category and price related to that item are inserted to the column.
+A third array is created with the length of row where ones are inserted.
+Using this array, column and row can create a sparse adjacency matrix by mapping the index $i$ in row and column to the array with ones.
+Within the adjacency matrix, there will be inserted 1 if there is a connection between item $i$ and user $u$, item $i$ and category $c$, and item $i$ and price $p$.
