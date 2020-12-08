@@ -9,7 +9,7 @@ This means that collaborative filtering recommends an item to a user based on a 
 Collaborative filtering does often only utilize users and their rated item, but it can still recommend items that are difficult to profile using content-based filtering \cite{Matrix-factorization-techniques}.
 However, collaborative filtering suffers from the cold start problem which means that it does not deal well with new users that have not rated any items.
 
-\subsection{Matrix factorization}
+\subsection{Matrix factorization}\label{bsc::MF}
 The data concerning users and items can be represented as a matrix where each row represents a user and each column an item.
 The entries in the matrix will then be the explicit feedback given for that item by the user if there is any.
 This will be quite a sparse matrix in most cases.
