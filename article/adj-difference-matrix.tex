@@ -1,22 +1,28 @@
-\subsection{Generated adjacency matrix}
+\section{Generated adjacency matrix}
 In the following subsection the generated adjacency matrices of LightGCN and price aware recommendation are described.
 Both use the adjacency matrix as a representation for a heterogeneous graph, where the value 1 represent a connection between two nodes.
+A more detailed description of the implementation can be seen in Appendix \ref{app:adj-impl}.
 
 \subsection{LightGCN}
-For LightGCN the adjacency matrix is the size of $\textrm{number of users} + \textrm{number of items} \times \textrm{number of users} + \textrm{number of items}$.
-Then for every connection between item $i$ and user $u$ 1 is inserted.
-It is generated with SciPy that creates a dictionary of keys, where two keys indicate the position in the matrix, and the value is 1 if there is a connection.
+The adjacency matrix of LightGCN is as follows:
+\begin{gather}
+    A =
+    \begin{bmatrix}
+        0   & R \\
+        R^T & 0
+    \end{bmatrix},
+\end{gather}
+where $R \in \mathbb{R}^{U \times I}$, and $U$ and $I$ denotes the number of users and the number of items summed together.
+Each entry in $R_{ui}$ is inserted with 1, if there is a connection between user $u$ and item $i$.
 
 \subsection{Price-aware recommendation}
-The adjacency matrix in price-aware recommendation is also implemented as a sparse matrix using SciPy.
-This is done by creating two arrays, row and column.
-The row and column are both the length of all interactions plus two times the amount of items.
-We start by for each user inserting their id as many times to the array as the number of items that they have interacted with.
-The id's of the items that the user interacted with are mapped to the corresponding index in the column array.
-After all user item interactions have been mapped to the row and column arrays, the item prices and category relationships are mapped to the arrays.
-This is done by inserting the index of an item into the row twice.
-At the indexes where the item was added to the row, the corresponding category and price related to that item are inserted to the column.
-A third array is created with the length of row where ones are inserted.
-Using this array, column and row can create a sparse adjacency matrix by mapping the index $i$ in row and column to the array with ones.
-Within the adjacency matrix, there will be inserted 1 if there is a connection between item $i$ and user $u$, item $i$ and category $c$, and item $i$ and price $p$.
-This results in an adjacency matrix that is of size number of users + number of items + number of categories + number of prices $\times$ number of users + number of items + number of categories + number of prices.
+The adjacency matrix of Price-aware recommendation is as follows:
+\begin{gather}
+    A =
+    \begin{bmatrix}
+        0   & R \\
+        R^T & 0
+    \end{bmatrix},
+\end{gather}
+where $R \in \mathbb{R}^{I \times U+C+P}$, and $I$, $U$, $C$, and $P$ denotes the number of users, number of items, number of categories, and number of prices.
+Each entry in $R_{ui}$, $R_{ip}$, $R_{ic}$ is inserted with 1 if there is a connection either between user $u$ and item $i$, item $i$ and price $p$ or item $i$ and category $c$.
