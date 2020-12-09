@@ -1,9 +1,9 @@
-\section{Generated adjacency matrix}
+\subsection{Generated adjacency matrix}
 In the following subsection the generated adjacency matrices of LightGCN and price aware recommendation are described.
 Both use the adjacency matrix as a representation for a heterogeneous graph, where the value 1 represent a connection between two nodes.
 A more detailed description of the implementation can be seen in Appendix \ref{app:adj-impl}.
 
-\subsection{LightGCN}
+\subsubsection{LightGCN}
 The adjacency matrix of LightGCN is as follows:
 \begin{gather}
     A =
@@ -15,7 +15,7 @@ The adjacency matrix of LightGCN is as follows:
 where $R \in \mathbb{R}^{U \times I}$, and $U$ and $I$ denotes the number of users and the number of items summed together.
 Each entry in $R_{ui}$ is inserted with 1, if there is a connection between user $u$ and item $i$.
 
-\subsection{Price-aware recommendation}
+\subsubsection{Price-aware recommendation}
 The adjacency matrix of Price-aware recommendation is as follows:
 \begin{gather}
     A =
