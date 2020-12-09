@@ -1,8 +1,33 @@
 \section{Experiment}
 \input{article/equal-data.tex}
+\input{article/experimental-settings.tex}
+\subsection{Performance comparisons}
+As can be seen on \autoref{tab:results-with-many-methods} LightGCN outperfoms all the other methods by a significant amount.
+With our dataset NGCF performs better than PUP by a small amount, even though Price-Aware recommendation in their paper showcased the opposite \cite{Priceaware}.
+The results also showcase, that there are a large decrease in performance, when adding prices and categories to the adjacency matrix in LightGCN, which makes it perform worse than any other baseline method.
+For NGCF PAS the same changes in input only makes it differentiate negatively by a small amount and actually performs better than PUP.
 
-\subsection{Simple price aware extension of LightGCN}
-To investigate the extension of LightGCN, we investigate the performance of Price-Aware Recommendation, LightGCN, GCN, NGCF, GCMC, adapted LightGCN with Price and category nodes in the input data and NGCF with a price and category extension.
+\begin{table*}[h!]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \rowcolor[HTML]{FFFFFF}
+                       & \multicolumn{4}{l|}{\cellcolor[HTML]{FFFFFF}Yelp Dataset}                                                       \\ \hline
+        Method         & Recall@50                                                 & NDCG@50         & Recall@100      & NDCG@100        \\ \hline
+        LightGCN       & \textbf{0.2106}                                           & \textbf{0.1063} & \textbf{0.3176} & \textbf{0.1344} \\ \hline
+        PUP            & 0.1697                                                    & 0.07802         & 0.2654          & 0.1023          \\ \hline
+        GCN            & 0.1558                                                    & 0.07593         & 0.2442          & 0.1001          \\ \hline
+        NGCF           & 0.1810                                                    & 0.08817         & 0.2769          & 0.1132          \\ \hline
+        GCMC           & 0.1692                                                    & 0.0835          & 0.2497          & 0.1008          \\ \hline
+        PAS (1.0)      & 0.1542                                                    & 0.0717          & 0.2199          & 0.086           \\ \hline
+        NGCF PAS (1.0) & 0.1749                                                    & 0.0849          & 0.2743          & 0.1111          \\ \hline
+    \end{tabular}
+    \caption{Results for the experiment}
+    \label{tab:results-with-many-methods}
+\end{table*}
+
+\subsubsection{Hyperparameter experiment}
+As described in \autoref{subsec:simple-extension}, we utilize a hyperparameter that is inserted into the adjacency matrix, whenever there is a connection between the item nodes and category nodes, or item nodes and price nodes.
 The hyperparameter $X$ is tested with the values of $0.0$, $0.5$, $1.0$ and $2.0$ to see the effect of this as input data has on the final result.
 \begin{table*}[h!]
     \centering
@@ -11,21 +36,19 @@ The hyperparameter $X$ is tested with the values of $0.0$, $0.5$, $1.0$ and $2.0
         \rowcolor[HTML]{FFFFFF}
                        & \multicolumn{4}{l|}{\cellcolor[HTML]{FFFFFF}Yelp Dataset}                                   \\ \hline
         Method         & Recall@50                                                 & NDCG@50 & Recall@100 & NDCG@100 \\ \hline
-        LightGCN       & 0.2106                                                    & 0.1063  & 0.3176     & 0.1344   \\ \hline
-        GCN            & 0.1558                                                    & 0.07593 & 0.2442     & 0.1001   \\ \hline
-        NGCF           & 0.1810                                                    & 0.08817 & 0.2769     & 0.1132   \\ \hline
-        GCMC           & 0.1692                                                    & 0.0835  & 0.2497     & 0.1008   \\ \hline
         PAS (0.0)      &                                                           &         &            &          \\ \hline
         PAS (0.5)      &                                                           &         &            &          \\ \hline
         PAS (1.0)      & 0.1542                                                    & 0.0717  & 0.2199     & 0.086    \\ \hline
         PAS (2.0)      &                                                           &         &            &          \\ \hline
-        NGCF PAS (1.0) &                                                           &         &            &          \\ \hline
+        NGCF PAS (1.0) & 0.1749                                                    & 0.0849  & 0.2743     & 0.1111   \\ \hline
     \end{tabular}
     \caption{Results for the experiment.}
-    \label{tab:results}
+    \label{tab:hyperparameter-results}
 \end{table*}
-As can be seen on \autoref{tab:results} inserting categories and price into the adjacency matrix decreases the performance overall on LightGCN.
+As can be seen on \autoref{tab:hyperparameter-results} inserting categories and price into the adjacency matrix decreases the performance overall on LightGCN.
 There could be multiple reasons for this not performing well.
 The embeddings created from this input could be used, so that it tries to recommend prices and categories, which is not possible.
 Another reason could be because LightGCN does not utilize feature transformation and the nonlinear activation function.
 LightGCN performs very well, if there are only user and item ids, and the decrease in performance could be because LightGCN is unable to handle the semantic representations in price and category.
+
+\subsection{Training accuracy}
