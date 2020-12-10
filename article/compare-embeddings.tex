@@ -1,6 +1,6 @@
 \subsection{Embeddings comparison}
 \subsubsection{Price-aware recommendation}\label{subsubsec:price}
-The input parameters for construction of the embeddings are the adjacency matrix $A \in \mathbb{R}^{N \times N}$ and identity matrix $I \in \mathbb{R}^{N \times N}$, where $N$ is the number of nodes.
+The input parameters when constructing the embeddings are the adjacency matrix $A \in \mathbb{R}^{N \times N}$ and identity matrix $I \in \mathbb{R}^{N \times N}$, where $N$ is the number of nodes.
 Embeddings from node j to node i are propagated as follows \cite{Priceaware},
 \begin{equation}
     t_{ji} = \frac{1}{|\mathcal{N}_i|}e'_j,
@@ -14,11 +14,11 @@ The updating rule is,
      & o_p = \sum_{j \in \{i \textrm{ with } \textbf{p}_i=c \} \cup \{ p\}}^{} t_{jp}                      \\
      & e_f = \textrm{tanh}(o_f), f \in \{u, i, c, p\},
 \end{align*}
-where $e_u$, $e_i$, $e_c$, and $e_p$ are the embeddings for user $u$, item $i$, category $c$ and price $p$.
-These embeddings are used for the prediction as described in \autoref{subsec:price-intro}.
+where $e_u$, $e_i$, $e_c$, and $e_p$ are the embeddings for user $u$, item $i$, category $c$ and price $p$ respectively.
+These embeddings are used to compute the predictions as described in \autoref{subsec:price-intro}.
 
 \subsubsection{LightGCN}\label{subsubsec:lightgcn-embedding}
-The embeddings for LightGCN are calculated as follows \cite{lightgcn},
+The embeddings for LightGCN are constructed as follows \cite{lightgcn},
 \begin{equation}
     E^{(k+1)} = (D^{\frac{1}{2}}AD^{\frac{1}{2}}E^{(k)}),
 \end{equation}
@@ -29,18 +29,17 @@ The final embedding is obtained as follows,
 \begin{equation}
     e_u = \sum_{k=0}^{K} \alpha_k e_u^{(k)};\;\;\; e_i = \sum_{k=0}^{K} \alpha_k e_i^{(k)},
 \end{equation}
-where $\alpha$ is set to $1/(K + 1)$.
-$\alpha$ is used to normalize the embeddings.
+where $\alpha$ is set to $1/(K + 1)$ and is used to normalize the embeddings.
 
 \subsubsection{NGCF}\label{subsubsec:NGCF-embed}
-The embeddings for NGCF are calculated as follows \cite{NGCF_2019},
+The embeddings for NGCF are constructed as follows \cite{NGCF_2019},
 \begin{equation}
     \begin{split}
         E^{(l)} = &LeakyReLU((\lambda + I)E^{(l-1)}W_1^{(l)}+\\
         & \lambda E^{(l-1)}\bigodot E^{(l-1)}W_2^{(l))},
     \end{split}
 \end{equation}
-where $E^{(l)} \in \mathbb{R}^{I+U \times T}$ are the item and user embedding after $l$ convolutions.
+where $E^{(l)} \in \mathbb{R}^{I+U \times T}$ are the item and user embeddings after $l$ convolutions.
 $E^{(0)} \in \mathbb{R}^{I+U \times T}$ is the $0th$ layer embedding, where $T$ is the embedding size.
 $I$ is the identity matrix.
 $W_1^{(l)}$ and $W_2^{(l)}$ are trainable weight matrices.
@@ -51,5 +50,5 @@ $\lambda$ is the Laplacian matrix for the user-item, item-price and item-categor
 where $A$ and $D$ are the adjacency and diagonal matrix.
 
 \subsubsection{Differences in embeddings}
-The difference between NGCF and LightGCN can be seen to be that NGCF utilizes the $LeakyReLU$ activation function as well as using the trainable weight matrices.
-Where NGCF and LightGCN are constructed for collaborative filtering without additional side information, the construction of the embeddings in Price-Aware recommendation focus' on creating additional embeddings for both price and category, and using these to make a prediction.
+The difference between NGCF and LightGCN are that NGCF utilizes the $LeakyReLU$ activation function as well as using the trainable weight matrices.
+While NGCF and LightGCN are constructed for collaborative filtering without additional side information, the construction of the embeddings in Price-Aware recommendation focuses on constructing additional embeddings for both price and category, and utilizing these to compute predictions.
