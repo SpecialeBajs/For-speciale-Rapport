@@ -6,7 +6,7 @@ Embeddings from node j to node i are propagated as follows \cite{Priceaware},
     t_{ji} = \frac{1}{|\mathcal{N}_i|}e'_j,
 \end{equation}
 where $\mathcal{N}_i$ is the set of neighbors for node $i$ and $e'_j$ is the embedding node j.
-The updating rule is:
+The updating rule is,
 \begin{align*}
      & o_u = \sum_{j \in \{i \textrm{ with } R_{ui}=1 \} \cup \{ u\}}^{} t_{ju}                            \\
      & o_i = \sum_{j \in \{u \textrm{ with } R_{ui}=1 \} \cup \{ i, \textbf{c}_i \textbf{p}_i\}}^{} t_{ji} \\
@@ -30,6 +30,7 @@ The final embedding is obtained as follows,
     e_u = \sum_{k=0}^{K} \alpha_k e_u^{(k)};\;\;\; e_i = \sum_{k=0}^{K} \alpha_k e_i^{(k)},
 \end{equation}
 where $\alpha$ is set to $1/(K + 1)$.
+$\alpha$ is used to normalize the embeddings.
 
 \subsubsection{NGCF}\label{subsubsec:NGCF-embed}
 The embeddings for NGCF are calculated as follows \cite{NGCF_2019},
@@ -48,3 +49,7 @@ $\lambda$ is the Laplacian matrix for the user-item, item-price and item-categor
     \lambda = D^{\frac{1}{2}}AD^{\frac{1}{2}},
 \end{equation}
 where $A$ and $D$ are the adjacency and diagonal matrix.
+
+\subsubsection{Differences in embeddings}
+The difference between NGCF and LightGCN can be seen to be that NGCF utilizes the $LeakyReLU$ activation function as well as using the trainable weight matrices.
+Where NGCF and LightGCN are constructed for collaborative filtering without additional side information, the construction of the embeddings in Price-Aware recommendation focus' on creating additional embeddings for both price and category, and using these to make a prediction.
