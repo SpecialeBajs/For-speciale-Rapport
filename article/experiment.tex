@@ -4,6 +4,7 @@
 \subsection{Performance comparisons}
 As can be seen on \autoref{tab:results-with-many-methods} LightGCN outperfoms all the other methods by a significant amount.
 With our dataset NGCF performs better than PUP by a small amount, even though Price-Aware recommendation in their paper showcased the opposite \cite{Priceaware}.
+Price-Aware recommendation also uses a Yelp dataset for their experiment, however it is not exactly the same dataset.
 The results also showcase, that there are a large decrease in performance, when adding prices and categories to the adjacency matrix in LightGCN, which makes it perform worse than any other baseline method.
 For NGCF PAS the same changes in input only makes it differentiate negatively by a small amount and actually performs better than PUP.
 
