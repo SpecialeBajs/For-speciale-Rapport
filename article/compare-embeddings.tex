@@ -1,7 +1,7 @@
 \subsection{Embeddings comparison}
 \subsubsection{Price-aware recommendation}\label{subsubsec:price}
 The input parameters for construction of the embeddings are the adjacency matrix $A \in \mathbb{R}^{N \times N}$ and identity matrix $I \in \mathbb{R}^{N \times N}$, where $N$ is the number of nodes.
-Embeddings from node j to node i are propagated as follows:
+Embeddings from node j to node i are propagated as follows \cite{Priceaware},
 \begin{equation}
     t_{ji} = \frac{1}{|\mathcal{N}_i|}e'_j,
 \end{equation}
