@@ -1,10 +1,11 @@
-\subsection{Generated adjacency matrix}
-In the following subsection the generated adjacency matrices of LightGCN and price aware recommendation are described.
-Both use the adjacency matrix as a representation for a heterogeneous graph, where the value 1 represent a connection between two nodes.
+\section{Adjacency matrix comparisons}\label{subsubsec:lightGCN-adj}
+In the following subsection the generated adjacency matrices of LightGCN, NGCF and price aware recommendation are described.
+All three use the adjacency matrix as a representation for a heterogeneous graph, where the value 1 represent a connection between two nodes.
+For LightGCN and NGCF the adjacency matrix is identical.
 A more detailed description of the implementation can be seen in Appendix \ref{app:adj-impl}.
 
-\subsubsection{LightGCN}\label{subsubsec:lightGCN-adj}
-The adjacency matrix of LightGCN is as follows:
+\subsection{LightGCN and NGCF}
+The adjacency matrix of LightGCN and NGCF is as follows:
 \begin{gather}
     A =
     \begin{bmatrix}
@@ -14,6 +15,25 @@ The adjacency matrix of LightGCN is as follows:
 \end{gather}
 where $R \in \mathbb{R}^{U \times I}$, and $U$ and $I$ denotes the number of users and the number of items summed together.
 Each entry in $R_{ui}$ is inserted with 1, if there is a connection between user $u$ and item $i$.
+An example can be seen on \autoref{tab:LightGCN-adj}, where $u$ indicates an user and $i$ indicates an item.
+As seen it is not possible for a user to have a connection to another user, or an item to connect to another item.
+\begin{table}
+
+    \[
+        \begin{blockarray}{cccccc}
+            & u_1 & u_2 & i_1 & i_2 & i_3 \\
+            \begin{block}{c(ccccc)}
+                u_1 & 0 & 0 & 1 & 0 & 1   \\
+                u_2 & 0 & 0 & 0 & 1 & 1   \\
+                i_1 & 1 & 0 & 0 & 0 & 0   \\
+                i_2 & 0 & 1 & 0 & 0 & 0   \\
+                i_3 & 1 & 1 & 0 & 0 & 0   \\
+            \end{block}
+        \end{blockarray}
+    \]
+    \caption{Example of an adjacency matrix in LightGCN}
+    \label{tab:LightGCN-adj}
+\end{table}
 
 \subsubsection{Price-aware recommendation}
 The adjacency matrix of Price-aware recommendation is as follows:
@@ -25,4 +45,27 @@ The adjacency matrix of Price-aware recommendation is as follows:
     \end{bmatrix},
 \end{gather}
 where $R \in \mathbb{R}^{I \times U+C+P}$, and $I$, $U$, $C$, and $P$ denotes the number of users, number of items, number of categories, and number of prices.
-Each entry in $R_{ui}$, $R_{ip}$, $R_{ic}$ is inserted with 1 if there is a connection either between user $u$ and item $i$, item $i$ and price $p$ or item $i$ and category $c$.
+Each entry in $R_{ui}$, $R_{ip}$, $R_{ic}$ is inserted with 1 if there is a connection either between user $u$ and item $i$, item $i$ and price $p$ or item $i$ and category $c$.\\
+An example can be seen on \autoref{tab:Price-aware-adj}, where $u$ indicates an user, $i$ indicates an item, c indicates a category, and p indicates a price.
+It is not possible to have a connection between an user and a category or price, or for a given type to have a connection with itself.
+For example the type of item can not connect to another item.
+\begin{table}
+    \[
+        \begin{blockarray}{cccccccccc}
+            & u_1 & u_2 & i_1 & i_2 & i_3 & c_1 & c_2 & p_1 & p_2 \\
+            \begin{block}{c(ccccccccc)}
+                u_1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0   \\
+                u_2 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0  \\
+                i_1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0  \\
+                i_2 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1  \\
+                i_3 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1  \\
+                c_1 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0  \\
+                c_2 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0  \\
+                p_1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0  \\
+                p_2 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0  \\
+            \end{block}
+        \end{blockarray}
+    \]
+    \caption{Example of an adjacency matrix in Price-Aware recommendation}
+    \label{tab:Price-aware-adj}
+\end{table}
