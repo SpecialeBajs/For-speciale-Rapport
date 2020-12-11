@@ -20,5 +20,7 @@ The final purchase prediction $s$ between user $u$ and item $i$ is formulated as
 \begin{equation}
     s = e^T_u e_i + e^T_u e_p + e^T_i e_p + \alpha (e^T_u e_c + e^T_u e_p + e^T_c e_p),
 \end{equation}
-where $\alpha$ is a hyper-parameter used to balance the categories influence on the prediction.
+where $e_u$, $e_i$, $e_c$, and $e_p$ is the embeddings for user, item, category and price, respectively.
+$\alpha$ is a hyper-parameter used to balance the categories influence on the prediction.
+The embeddings are described in further detail in \autoref{subsubsec:price}.
 The results of a Top-K Recommendation Performance test showcase that PUP outperforms other state-of-the-art methods such as NGCF with an average improvement of 3.59 \% to 5.97 \% \cite{Priceaware}.
