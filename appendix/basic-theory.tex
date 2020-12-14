@@ -44,7 +44,8 @@ Doing this the node considers itself a neighbor.
 \subsection{Factorization machines}
 Factorization machines(FM) are a general-purpose supervised learning algorithm.
 The main advantage of using FM's is that they perform very well with large and sparse data sets, and have a linear complexity.
-The problem that FM's solve is that if the dataset is very sparse there might not be enough data to estimate interaction between variables.
+When dealing with very sparse datasets where there are many users and items with few interactions, it can be difficult to predict future interactions because there is not enough data to do so.
+This is the problem that FM's solve.
 FM's are able to do this well because they break the independence of the parameters by factorizing them.
 This means that they can utilize the data of one interaction to estimate the data for another interaction.
 The goal of the FM model is to estimate a function $\hat{y}$ from a feature set $x_i$ to a target domain. 
