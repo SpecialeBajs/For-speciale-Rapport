@@ -20,7 +20,7 @@ For NGCF PAS the same changes in input only makes it differentiate negatively by
         GCN            & 0.1558                                                    & 0.07593         & 0.2442          & 0.1001          \\ \hline
         NGCF           & 0.1810                                                    & 0.08817         & 0.2769          & 0.1132          \\ \hline
         GCMC           & 0.1692                                                    & 0.0835          & 0.2497          & 0.1008          \\ \hline
-        PAS (1.0)      & 0.1542                                                    & 0.0717          & 0.2199          & 0.086           \\ \hline
+        LGCN PAS (1.0) & 0.1542                                                    & 0.0717          & 0.2199          & 0.086           \\ \hline
         NGCF PAS (1.0) & 0.1749                                                    & 0.0849          & 0.2743          & 0.1111          \\ \hline
     \end{tabular}
     \caption{Results for the experiment with the different methods}
@@ -29,7 +29,7 @@ For NGCF PAS the same changes in input only makes it differentiate negatively by
 
 \subsubsection{Hyperparameter experiment}
 As described in \autoref{subsec:simple-extension}, we utilize a hyperparameter that is inserted into the adjacency matrix, whenever there is a connection between the item nodes and category nodes, or item nodes and price nodes.
-The hyperparameter $X$ in PAS and NGCF PAS is tested with the values of $0.0$, $0.5$, $1.0$ and $2.0$ to see the effect of this as input data has on the final result.
+The hyperparameter $X$ in LGCN PAS and NGCF PAS is tested with the values of $0.0$, $0.5$, $1.0$ and $2.0$ to see the effect of this as input data has on the final result.
 \begin{table*}[h!]
     \centering
     \begin{tabular}{|l|l|l|l|l|}
@@ -37,10 +37,10 @@ The hyperparameter $X$ in PAS and NGCF PAS is tested with the values of $0.0$, $
         \rowcolor[HTML]{FFFFFF}
                        & \multicolumn{4}{l|}{\cellcolor[HTML]{FFFFFF}Yelp Dataset}                                   \\ \hline
         Method         & Recall@50                                                 & NDCG@50 & Recall@100 & NDCG@100 \\ \hline
-        PAS (0.0)      & 0.1560                                                    & 0.07674 & 0.2456     & 0.09901  \\ \hline
-        PAS (0.5)      & 0.1591                                                    & 0.07825 & 0.2539     & 0.1010   \\ \hline
-        PAS (1.0)      & 0.1542                                                    & 0.0717  & 0.2199     & 0.086    \\ \hline
-        PAS (2.0)      & 0.1526                                                    & 0.07573 & 0.1581     & 0.06509  \\ \hline
+        LGCN PAS (0.0) & 0.1560                                                    & 0.07674 & 0.2456     & 0.09901  \\ \hline
+        LGCN PAS (0.5) & 0.1591                                                    & 0.07825 & 0.2539     & 0.1010   \\ \hline
+        LGCN PAS (1.0) & 0.1542                                                    & 0.0717  & 0.2199     & 0.086    \\ \hline
+        LGCN PAS (2.0) & 0.1526                                                    & 0.07573 & 0.1581     & 0.06509  \\ \hline
         NGCF PAS (0.0) & 0.1758                                                    & 0.08483 & 0.2737     & 0.1111   \\ \hline
         NGCF PAS (0.5) & 0.1756                                                    & 0.08472 & 0.2744     & 0.1108   \\ \hline
         NGCF PAS (1.0) & 0.1749                                                    & 0.08485 & 0.2743     & 0.1111   \\ \hline
