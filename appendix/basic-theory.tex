@@ -42,10 +42,10 @@ This could be solved by replacing $A$ with $\hat{A} = A + I$ where $I$ is the id
 Doing this the node considers itself a neighbor.
 
 \subsection{Factorization machines}
-Factorization machines(FM) are a general-purpouse supervised learning algorithm.
+Factorization machines(FM) are a general-purpose supervised learning algorithm.
 The main advantage of using FM's is that they perform very well with large and sparse data sets, and have a linear complexity.
 The problem that FM's solve is that if the dataset is very sparse there might not be enough data to estimate interaction between variables.
-FM's are able to do this well because because they break the independence of the parameters by factorizing them.
+FM's are able to do this well because they break the independence of the parameters by factorizing them.
 This means that they can utilize the data of one interaction to estimate the data for another interaction.
 The goal of the FM model is to estimate a function $\hat{y}$ from a feature set $x_i$ to a target domain. 
 It does this by using factorized parametrization to capture feature interactions.
