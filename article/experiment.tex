@@ -29,7 +29,7 @@ For NGCF PAS the same changes in input only makes it differentiate negatively by
 
 \subsubsection{Hyperparameter experiment}
 As described in \autoref{subsec:simple-extension}, we utilize a hyperparameter that is inserted into the adjacency matrix, whenever there is a connection between the item nodes and category nodes, or item nodes and price nodes.
-The hyperparameter $X$ in LGCN PAS and NGCF PAS is tested with the values of $0.0$, $0.5$, $1.0$ and $2.0$ to see the effect of this as input data has on the final result.
+Experiments are done with the hyperparameter $X$ in LGCN PAS and NGCF PAS with the values $0.0$, $0.5$, $1.0$ and $2.0$ to see what effect of this has on the performance.
 \begin{table*}[h!]
     \centering
     \begin{tabular}{|l|l|l|l|l|}
@@ -50,7 +50,7 @@ The hyperparameter $X$ in LGCN PAS and NGCF PAS is tested with the values of $0.
     \label{tab:hyperparameter-results}
 \end{table*}
 As can be seen on \autoref{tab:hyperparameter-results} inserting categories and price into the adjacency matrix decreases the performance compared to LightGCN.
-The value it performs best with is 0.5, followed by 0.0.
+The value it has the best performance with is 0.5, followed by 0.0.
 Giving prices and categories the same or higher input value as the connection between item and user therefore decreases the results.
 There could be multiple reasons for this generally not performing well.
 The embeddings created from this input could be used, so that it tries to recommend prices and categories, which is not possible.
@@ -59,4 +59,3 @@ LightGCN performs well, if there are only user and item ids, and the decrease in
 For NGCF changing the input value of price and categories changes almost nothing.
 This is likely because the embeddings for price and categories are never used.
 However, we did have an initial idea, that the convolutions with price and category would be reflected onto users and items, which is seen to give a very minimal effect on the outcome.
-
