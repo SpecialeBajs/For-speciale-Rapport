@@ -47,7 +47,7 @@ Throughout this subsection we are describing NDCG, recall and precision.
 \subsubsection{NDCG}
 Normalized Discounted Cumulative Gain (NDCG) is a measure of ranking quality \cite{NDCG-evaluation}.
 To calculate the value of NDCG, it is necessary to have the Discounted Cumulative Gain (DCG).
-The calculations for DCG is,
+The equation for DCG is,
 \begin{equation}
     DCG = \sum_{i=1}^{n} \frac{relevance_i}{log_2(i+1)},
 \end{equation}
@@ -61,7 +61,7 @@ NDCG is calculated as follows,
 where $iDCG$ is the DCG with the ideal order \cite{NDCG-evaluation,Handbook}.
 
 \subsubsection{Recall and Precision}
-Recall and precision is calculated from the possible outcomes of the recommended items, which can be seen in \autoref{tab:possible-results}.
+Recall and precision are calculated from the possible outcomes of the recommended items, which can be seen in \autoref{tab:possible-results}.
 \begin{table}[]
     \centering
     \begin{tabular}{|l|l|l|}
@@ -74,9 +74,9 @@ Recall and precision is calculated from the possible outcomes of the recommended
     \caption{Possible outcomes of a recommendation of an item to a user.}
     \label{tab:possible-results}
 \end{table}
-Precision describes how precise and accurate the model is from the recommended items, so taking $TP$ and $FP$ into account.
-Recall describes how accurate the model is related to the items that should be recommended, so taking $TP$ and $FN$ into account.
-Precision and recall is calculated as follows,
+Precision describes how precise and accurate the model is from the recommended items, taking $TP$ and $FP$ into account.
+Recall describes how accurate the model is related to the items that should be recommended, taking $TP$ and $FN$ into account.
+Precision and recall are calculated as follows,
 \begin{equation}
     Precision = \frac{\#TP}{\#TP + \# FP}
 \end{equation}
