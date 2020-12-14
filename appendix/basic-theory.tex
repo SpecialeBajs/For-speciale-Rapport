@@ -40,3 +40,21 @@ Because of this, each time $i$ is increased, a node's new value is therefore aff
 An issue with this propagation function could be that the value of each node now is a sum of each of its neighbors, and therefore loses its own value.
 This could be solved by replacing $A$ with $\hat{A} = A + I$ where $I$ is the identity matrix.
 Doing this the node considers itself a neighbor.
+
+\subsection{Factorization machines}
+Factorization machines(FM) are a general-purpouse supervised learning algorithm.
+The main advantage of using FM's is that they perform very well with large and sparse data sets, and have a linear complexity.
+The problem that FM's solve is that if the dataset is very sparse there might not be enough data to estimate interaction between variables.
+FM's are able to do this well because because they break the independence of the parameters by factorizing them.
+This means that they can utilize the data of one interaction to estimate the data for another interaction.
+The goal of the FM model is to estimate a function $\hat{y}$ from a feature set $x_i$ to a target domain. 
+It does this by using factorized parametrization to capture feature interactions.
+The equation for the model looks like this:
+\[ \hat{y}(x) := w_0 + \sum_{i=1}^{n} w_ix_i + \sum_{i=1}^{n}\sum_{j=i+1}^{n} \big \langle v_i,v_j \big \rangle x_ix_j \]
+Where the parameters that have to be estimated are:
+\[ w_0 \epsilon \mathbb{R}, \qquad \mathbf{w} \epsilon \mathbb{R}^n, \qquad  \mathbf{V}\epsilon \mathbb{R}^{n \times k} \]
+and $\big \langle v_i,v_j \big \rangle$ is the dot product of two vectors of size k:
+\[ \big \langle v_i,v_j \big \rangle := \sum_{f=1}^{k} v_{i,f} \cdot v_{j,f}\]
+where $v_i$ and $v_j$ are both feature vectors of the i-th and j-th item interaction.
+
+By doing this the FM models each interaction by factorizing it which allows it to estimate parameters of high-order interactions under sparsity.
