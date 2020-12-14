@@ -48,8 +48,26 @@ When dealing with very sparse datasets where there are many users and items with
 This is the problem that FM's solve.
 FM's are able to do this well because they break the independence of the parameters by factorizing them.
 This means that they can utilize the data of one interaction to estimate the data for another interaction.
+Unlike classic matrix factorization models which represents the interactions as a matrix with users and items the FM model represents user-item interactions as tuples of real-valued feature vectors and numeric target variables.
+If we take the yelp data that we have used in \autoref{equal-data} as an example.
+In this data set we have set of users U, items I, categories C and price levels P.
+\begin{itemize}
+	\item $U = {1, 2}$
+	\item $I = {1, 2 ,3}$
+	\item $C = {1, 2}$
+	\item $P = {1, 2}$
+\end{itemize}
+The interactions in this dataset would then be represented as seen in \autoref{fig:FM-example} where each interaction is a row in the table which can also be seen as a vector.
+In the FM model this would considered as a feature set
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{figures/FM-example.png}
+    \caption{Dataformat used in FM's}
+    \label{fig:FM-example}
+\end{figure}
 The goal of the FM model is to estimate a function $\hat{y}$ from a feature set $x_i$ to a target domain. 
 It does this by using factorized parametrization to capture feature interactions.
+
 The equation for the model looks like this:
 \[ \hat{y}(x) := w_0 + \sum_{i=1}^{n} w_ix_i + \sum_{i=1}^{n}\sum_{j=i+1}^{n} \big \langle v_i,v_j \big \rangle x_ix_j \]
 Where the parameters that have to be estimated are:
