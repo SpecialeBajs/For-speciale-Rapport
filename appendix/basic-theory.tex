@@ -52,7 +52,7 @@ The equation for DCG is,
     DCG = \sum_{i=1}^{n} \frac{relevance_i}{log_2(i+1)},
 \end{equation}
 where $relevance_i$ is the predicted relevance for item $i$ and $n$ is the total number of items.
-DCG takes the placement into account, so that the array with the most relevant first in the array will have the largest value \cite{NDCG-evaluation,Handbook}.
+DCG takes the placement into account, so that the array with the most relevant items first in the array will have the largest value \cite{NDCG-evaluation,Handbook}.
 An example could be two arrays with the same values. such as $A = [1, 2, 3, 1]$, and $B = [3, 2, 1, 1]$. The results are $DCG(A) = 4.1925$ and $DCG(B) = 5.1925$, where it can be seen that the array with the most relevant items first has the highest value.
 NDCG normalizes DCG, so that the recommendations can be compared, as the rating can vary from user to user.
 NDCG is calculated as follows,
