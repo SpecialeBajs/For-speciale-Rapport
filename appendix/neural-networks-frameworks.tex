@@ -6,14 +6,14 @@ LightGCN uses TensorFlow and PUP uses PyTorch.
 \subsection{PyTorch}
 PyTorch has an object-oriented approach to creating neural networks.
 A lot of the implementation is already done for you and for the most part you just need to set up the boilerplate code.
-You start by creating a class that inherits from a class in PyTorch called \textit{nn.module}.
+You start by creating a class that inherits from a class in PyTorch called \textit{nn.module} as seen in \autoref{listing:pytorch-nn-class}.
 In the constructor of the class, you initialize all of the parameters in the network as tensors from PyTorch.
 Finally you have to implement the forward function of the network which is used to process the input through the network.
 The backward function that computes the gradients is already implemented.
-After you have called the network with a given input you then can call the \textit{backward} function on the result to backpropagate the error.
-PyTorch also has implementations of different update rules which can be used through their package called \textit{optim} which can be used to update the weights of the neural network after you have backpropagated the error.
+After you have called the network with a given input you then can call the \textit{backward} function on the result to backpropagate the error as can be seen in \autoref{listing:training-nn-pytorch}.
+PyTorch also has implementations of different update rules which can be used through their package called \textit{optim} to update the weights of the neural network after you have backpropagated the error as seen in \autoref{listing:training-nn-pytorch}.
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Class implementing a neural network in PyTorch}, captionpos=b, label={listing:pytorch-nn-class}]
 	import torch
 	import torch.nn.Parameter import Parameter
 
@@ -29,7 +29,7 @@ PyTorch also has implementations of different update rules which can be used thr
 
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Training neural network in PyTorch}, captionpos=b, label={listing:training-nn-pytorch}]
 	import torch
 	import torch.optim
 
@@ -59,16 +59,17 @@ Implementing a neural network in TensorFlow is very different from implementing 
 TensorFlow does not use an object-oriented approach so you have to define everything manually.
 You start by defining every variable that will be present in the neural network.
 This might be the size of the input layer, hidden layers and output layer.
-If you don't have a value to insert for them you still need to define placeholders so that TensorFlow has an idea of the shape and type of them.
+If you don't have a value to insert for them you still need to define placeholders so that TensorFlow has an idea of the shape and type of them as can be seen on lines 11-30 in \autoref{listing:training-nn-tensorflow}.
 After defining all of the variables you need to define the cost of the neural networks and the optimizer which can be the back propagating algorithm.
-Just like in PyTorch TensorFlow has some optimizers that are already implemented for you. 
+Just like in PyTorch TensorFlow has some optimizers that are already implemented for you which can be seen on lines 33-36 in \autoref{listing:training-nn-tensorflow}. 
 After you have defined all of the variables in your neural network you can initialize all of them by calling \textit{$initialize\_all\_variables$}.
 You can then start a training session by instantiating the Session class in TensorFlow.
-To start training you the call run function on the session object with the initialized variables.
+To start training you then call run function on the session object with the initialized variables which can be seen on lines 39-45 in \autoref{listing:training-nn-tensorflow}.
 From here you can start training by calling the run function again with the input data, the cost and the optimizer.
 Every time we pass some input through the neural network with a cost and an optimizer it will back propagate and update the weights in the neural network.
+The training process can be seen from line 48 in \autoref{listing:training-nn-tensorflow}
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Implementing and training neural network in TensorFlow}, captionpos=b, label={listing:training-nn-tensorflow}]
 	import tensorflow as tf
 
 	input_size = 1032

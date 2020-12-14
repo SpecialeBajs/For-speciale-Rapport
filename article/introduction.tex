@@ -1,19 +1,19 @@
 \section{Introduction}
 Recommendation systems are widely being used to help users browsing on the internet attenuate information overload\cite{YT_rec,Pint_rec}.
 The general idea behind a recommendation system is to predict whether a user will interact with a given item, e.g. purchase, rate, watch, based upon their historical data with similar items.
-Collaborative filtering (CF) tackles this problem by assuming that users with similar preferences on some items can be used to recommend each other additional items.
-The key functionality behind CF models is to first embed users and items which transforms them into a vectorized presentation.
-Secondly, then by using the embedding the historical interactions can be reconstructed.
+Collaborative filtering (CF) tackles this problem by assuming that users can be used by the recommendation system to recommed items for other users who have similar preferences on items.
+Generally, the most common way to achieve this is to firstly learn latent features to represent a user and an item, this process is also called embedding.
+Secondly, the embeddings are used for performing predictions.
 \\
-A very common way of doing CF is by doing Matrix Factorization (MF) as will be explained in \autoref{bsc::MF}.
-Though MF models have shown to perform quite well \cite{NGCF_2019} proposes Neural Graph Collaborative Filtering (NGCF).
+An early model for CF is Matrix Factorization, which embeds user and item ID as vectors and uses the dot product to predict whether a user would like a certain item.
+Though MF models have shown to perform quite well, \cite{NGCF_2019} proposes Neural Graph Collaborative Filtering (NGCF).
 \\ 
 NGCF argues that earlier models do not integrate the user-item interactions especially the bipartite graph structure in their embeddings.
 Therefore missing out on collaborative signals which could aid in recommendation.
 By utilizing a Graph Convolutional Network (GCN) they are able to achieve great performance compared to other baselines.
 \\
 GCN's has become the new state-of-the-art for CF but the reason for their effectiveness is not fully understood\cite{lightgcn}.
-Through empirical testing \cite{lightgcn} shows that feature transformation and nonlinear activation, the two most common designs in GCN's, do very little to contribute to more accurate predictions.
+Through empirical testing, \cite{lightgcn} shows that feature transformation and nonlinear activation, the two most common designs in GCN's, do very little to contribute to more accurate predictions.
 They then go on to propose a simple implementation of GCN called LightGCN which achieves even better performance than its more complex GCN counterparts.
 \\
 Looking at papers such as \cite{Priceaware} it can be seen that propagating the influence of price on users with items as a bridge, as well as integrating category into the propagation progress increases the performance.
