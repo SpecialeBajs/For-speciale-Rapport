@@ -1,0 +1,14 @@
+\subsection{Experimental Settings}
+\subsubsection{Evaluation metrics}
+The evaluation metrics for rating top k recommendation, we utilize recall@K and ndcg@K where K is set to 50 and 100.
+For all tests, the number of convolutions are set to 3.
+
+\subsubsection{Baselines}
+The results of the following methods compared in our experiments.
+\begin{itemize}
+    \item \textbf{PUP} \cite{Priceaware}: PUP utilizes price and categories to improve the recommendation performance with Graph Convolutional Networks. A more detailed description of PUP can be seen in \autoref{subsec:price-intro}.
+    \item \textbf{NGCF} \cite{NGCF_2019}: NGCF utilizes an embedding propagation layer with a Graph Convolutional Network. It was created with the purpose of collaborative filtering. More details can be seen in \autoref{subsec:lightgcn-ngcf}.
+    \item \textbf{LightGCN} \cite{lightgcn}: LightGCN was created from NGCF and showed improved performance in recall and NDCG by removing feature transformations and nonlinear activation function. More details can be seen in \autoref{subsec:lightgcn-ngcf}.
+    \item \textbf{GCN} \cite{kipf2017semisupervised}: GCN is used for semi-supervised classification on graphs.
+    \item \textbf{GC-MC} \cite{berg2017graph}: GC-MC utilizes Graph Convolutional Networks to create the representations for users and items. It only takes the first-order neighbor into account, and therefore only uses one convolution layer.
+\end{itemize}
