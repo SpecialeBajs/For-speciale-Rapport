@@ -1,8 +1,8 @@
 \subsection{Performance comparisons}
 As can be seen on \autoref{tab:results-with-many-methods} LightGCN outperforms all the other methods by a significant amount.
 With our dataset NGCF performs better than PUP by a small amount, even though Price-Aware recommendation in their paper showcased the opposite \cite{Priceaware}.
-Price-Aware recommendation also used a Yelp dataset from 2018 for their experiment, where our Yelp dataset is from 2020 and therefore is a bit larger than theirs.
-The results also showcase, that there are a large decrease in performance, when adding prices and categories to the adjacency matrix in LightGCN, which makes it perform worse than any other baseline method.
+Price-Aware recommendation also used a Yelp dataset from 2018 for their experiments, while our Yelp dataset is from 2020 and therefore is a bit larger than theirs.
+The results also showcase, that there is a large decrease in performance, when adding prices and categories to the adjacency matrix in LightGCN, which makes it perform worse than any of other baseline methods.
 For NGCF PAS the same changes in input only makes it differentiate negatively by a small amount and actually performs better than PUP.
 \begin{table*}[h!]
     \centering
@@ -24,7 +24,7 @@ For NGCF PAS the same changes in input only makes it differentiate negatively by
 \end{table*}
 The recall@50 and NDCG@50 for NGCF, NGCF PAS, LightGCN and LGCN PAS can be seen on \autoref{fig:ndcg-50k-lgcn-ngcf-ngcfpas-pas} and \autoref{fig:recall-50k-lgcn-ngcf-ngcfpas-pas}.
 Recall@100 and NCDG@100 for the same methods can be seen on \autoref{fig:ndcg-100k-lgcn-ngcf-ngcfpas-pas} and \autoref{fig:recall-100k-lgcn-ngcf-ngcfpas-pas}.
-It is shown that there is not much difference between the two NGCF graphs and that NGCF outperforms NGCF PAS by 3.48\% in Recall\@50, 1.04 in NDCG\@50, 1.01 in Recall\@100 and 1.02\% in NDCG\@100.
+The figures show that there is not a big difference between the NGCF and NGCF PAS graphs and that NGCF outperforms NGCF PAS by 3.48\% in Recall\@50, 1.04 in NDCG\@50, 1.01 in Recall\@100 and 1.02\% in NDCG\@100.
 However for LightGCN and LGCN Pas, there is a large difference.
 LGCN PAS has a large decrease in performance, and the graph fluctuates a lot, and does not improve when training.
 In fact LGCN performs better by 36.6\% in Recall\@50, 48.3 in NDCG\@50, 44.4\% in Recall\@100 and 56.3\% in NDCG\@100.
@@ -75,14 +75,14 @@ Experiments are done with the hyperparameter $X$ in LGCN PAS and NGCF PAS with t
     \caption{Results for the experiment using different input values.}
     \label{tab:hyperparameter-results}
 \end{table*}
-As can be seen on \autoref{tab:hyperparameter-results} inserting categories and price into the adjacency matrix decreases the performance compared to LightGCN.
+As can be seen in \autoref{tab:hyperparameter-results} inserting categories and price into the adjacency matrix decreases the performance compared to LightGCN.
 The best performing $X$ value is 0.5, followed by 0.0 according to our tests.
 Giving prices and categories the same or higher input value as the connection between item and user therefore decreases the performance.
 On \autoref{fig:ndcg-pas-weights} and \autoref{fig:recall-pas-weights} it can be seen that the graphs fluctuate with the input values that were used.
 There could be multiple reasons for this generally not performing well.
 The embeddings created from this input could be used, so that it tries to recommend prices and categories, which is not possible.
 Another reason could be because LightGCN does not utilize feature transformation and the nonlinear activation function.
-LightGCN performs well, if there are only user and item ids, and the decrease in performance could be because LightGCN is unable to handle the semantic representations in price and category.\\
+LightGCN performs well, if there are only user and item ids, and the decrease in performance could be because LightGCN is unable to handle the semantic representations of price and category.\\
 For NGCF changing the input value of price and categories changes almost nothing.
 This can also be seen on \autoref{fig:ndcg-pas-weights} and \autoref{fig:recall-ngcfpas-weights}.
 This is likely because the embeddings for price and categories are never used.
