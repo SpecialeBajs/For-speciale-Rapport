@@ -1,11 +1,12 @@
-\subsection{Simple price aware extension of LightGCN}\label{subsec:simple-extension}
+\subsection{LGCN PAS and NGCF PAS}\label{subsec:simple-extension}
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{figures/uipc.png}
-    \caption{Illustration of the nodes in the simple extension of LightGCN.}
+    \caption{Illustration of the nodes in the simple extension of LightGCN and NGCF.}
     \label{fig:uipc}
 \end{figure}
-We try to extend the implementation of LightGCN by changing the input parameters, where we construct the adjacency matrix containing the users, item, category and price graph, which is illustrated in \autoref{fig:uipc}.
+We extend the implementations of LightGCN and NGCF by changing the input parameters, where we construct the adjacency matrix containing the users, item, category and price graph, which is illustrated in \autoref{fig:uipc}.
+This extension for LightGCN is called LGCN PAS and the extension of NGCF is called NGCF PAS.
 The intuition behind the idea, is that the graph convolutions will capture the values of categories and price, so even if we do not use the embeddings for price and category, they will still influence users and items.
 Let the user-item, item-price and item-category interactions matrix be $R \in \mathbb{R}^{I \times U + C + P}$, where $I$ denotes the number of items, $U, C, P$ denotes the number of users, categories and prices.
 Each entry of $R_{ui}$ is 1 if user $u$ has rated item $i$. Otherwise it is 0.
@@ -18,4 +19,4 @@ The adjacency matrix is obtained as follows:
         R^T & 0
     \end{bmatrix}
 \end{gather}
-The embeddings are calculated as described in \autoref{subsubsec:lightgcn-embedding} and there are currently no changes other changes to this method, other than the adjacency matrix containing information about price and category.
+The embeddings for users and items are calculated for NGCF as described in \autoref{subsubsec:NGCF-embed} and for LightGCN as described in \autoref{subsubsec:lightgcn-embedding}.
