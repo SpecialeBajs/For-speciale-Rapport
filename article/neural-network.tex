@@ -23,7 +23,6 @@ In NGCF, LightGCN and Price-Aware Recommendation they use BPR as their loss func
 This is done by taking the objective function of BPR $x_{uij}$ and negating it.
 The equation for the loss function will then look like this:
 \[E(x_{uij}) = ln(1+e^{-x_{uij}})\]
-where the objective function is negated.
 
 \subsubsection{Adam optimization algorithm}
 The way that Adam differs from the classical Stochastic gradient descent algorithm is that instead of having a single learning rate for all weights, it has a learning rate that is maintained for each network weight\cite{Adam}.
