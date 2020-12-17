@@ -8,7 +8,7 @@ One of the earliest CF models were Matrix Factorization (MF) \cite{Matrix-factor
 MF  projects the ID of each user and item into embedding vectors and uses the dot product between them to predict an user-item interaction.
 While the dot product can be used to predict user-item interaction its linearity makes it unable to capture more complex relationships between users and items.
 Newer more sofisticated techniques utilizises neural networks to enhance the interaction modeling while keeping the same embedding as the older MF models.
-Some examples of this are the NMF model\cite{NEU_COL_FIL} which uses nonlinear neural networks as its interaction function and the LRML model\cite{LAT_REL_MET} which utilizises Euclidean distance metrics to model the interaction strength.
+Some examples of this are the NMF model\cite{NEU_COL_FIL} which uses nonlinear neural networks as its interaction function and the LRML model\cite{LAT_REL_MET} which utilizes Euclidean distance metrics to model the interaction strength.
 Other approaches include trying to improve the embedding function.
 To do this a lot of effort has been done to take side information into account such like item content\cite{ATT_COL_FIL_MUL}, social relations\cite{REC_SOC_USE} and external knowledge graphs\cite{KGAT, KNO_GRA_REC}.
 Other method use the weigthed average of the ID embeddings of historical items as the pre-existing features of a user and thereby improving the user representation\cite{SVD_PLUSPLUS,FISM}.
