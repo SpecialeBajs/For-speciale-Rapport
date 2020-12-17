@@ -26,5 +26,5 @@ One such approach is GraphSAGE\cite{IND_REP_LEA} which aggregates feature inform
 Because of the strengths related to graph convolution, a lot of effort has gone into creating recommendation systems\cite{NGCF_2019,GC_MC,Priceaware}, utilizing GCN on the user-item interaction graph to better capture CF signals in high-hop neighbors.
 But Wu et al. \cite{SGCN} argues that GCN is unnecessarily complex and proposes a simplified linear model they call Simple Graph Convolution that removes the nonlinearity of GCN and merges multiple weights into one.
 Based on this article and others \cite{PRE_PROP,DEEP_GCN}, HE et al. \cite{lightgcn} proposes LightGCN.
-LightGCN and SGC seems similiar but SGC is for node classification and simplifies GCN for efficiency and interpretability, while LightGCN is for CF.
+LightGCN and SGC seem similar but SGC is for node classification and simplifies GCN for efficiency and interpretability, while LightGCN is for CF.
 nonlinearity and weight matrices are not usefull for CF and makes model training less effective.
