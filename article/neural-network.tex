@@ -16,7 +16,7 @@ This is called back propagation.
 After doing this enough times or when the margin of error is lower than a predefined value the network is considered trained and can be tested on new data or be applied to a real-world scenario.
 
 \subsubsection{Bayesian Personalized Ranking}
-Bayesian Personalized Ranking(BPR) is an approach to modeling personalized ranking.
+Bayesian Personalized Ranking(BPR) is an approach to modeling personalized ranking \cite{BPR}.
 This is done through a pairwise approach where we calculate the probability that a user u prefers item i over item j.
 It calculates the probability value of a user preferring i over j for every item pair and then maximizes the log-likelihood of all the observed pairs.
 In NGCF, LightGCN and Price-Aware Recommendation they use BPR as their loss function.
@@ -26,3 +26,12 @@ The equation for the loss function will then look like this:
 where the objective function is negated.
 
 \subsubsection{Adam optimization algorithm}
+The way that Adam differs from the classical Stochastic gradient descent algorithm is that instead of having a single learning rate for all weights, it has a learning rate that is maintained for each network weight\cite{Adam}.
+This learning rate is then separately adapted during the learning process.
+The algorithm combines the advantages of two stochastic gradient descent algorithms Adaptive Gradient Algorithm(AdaGrad) and Root Mean Square Propagation(RMSProp).
+Adam calculates an exponential moving average of the gradient and the squared gradient.
+It then has two parameters beta1 and beta2 that control the decay of these moving averages.
+The Adam optimization algorithm is implemented and can be used freely in both PyTorch and Tensorflow.
+It is also an efficient algorithm that has little memory requirements.
+The efficiency, availability and performance of the algorithm makes it a good candidate for many machine learning problems.
+The main papers that we investigated LightGCN \cite{lightgcn} and Price-aware Recommendation\cite{Priceaware} both use Adam as their optimization algorithm.
