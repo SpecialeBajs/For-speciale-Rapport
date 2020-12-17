@@ -15,11 +15,11 @@ Other methods use the weighted average of the ID embeddings of historical items 
  
 \subsection{Graph-Based Recommendation}
 Another interesting technique is to look at the user-item graph structure and exploit it for better performance in recommendation systems.
-Some of the earlier methods uses label propagation such as ItemRank\cite{ItemRank} and BiRank\cite{BiRank}.
-To get the score of items for a specific user these methods define the labels as the users interacted items and propagate the labels on the graph ie. engouraging connected nodes to have similiar labels.
-These methods lack model parameters and are therefore not able to properply optimize the objective function\cite{NGCF_2019}.
+Some of the earlier methods use label propagation such as ItemRank\cite{ItemRank} and BiRank\cite{BiRank}.
+To get the score of items for a specific user these methods define the labels as the users interacted items and propagate the labels on the graph ie. encouraging connected nodes to have similar labels.
+These methods lack model parameters and are therefore not able to properly optimize the objective function\cite{NGCF_2019}.
 To work around this problem methods like HOP-Rec \cite{HOP_Rec} was created.
-HOP-Rec combines graph based and embedding based methods and performs random walks to enrich the interactions of a user with multi-hop connected items.
+HOP-Rec combines graph-based and embedding based methods and performs random walks to enrich the interactions of a user with multi-hop connected items.
 HOP-Rec's better performance compared to MF models indicates that utilizing the connectivity information provides better embeddings.
 Graph Neural Networks (GNN) provides new ideas on how to model graph structure to guide the embedding learning.
 One such approach is GraphSAGE\cite{IND_REP_LEA} which aggregates feature information from a node's neighborhood e.g. degrees or text attributes.
