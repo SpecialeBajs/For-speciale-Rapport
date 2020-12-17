@@ -22,7 +22,7 @@ To work around this problem methods like HOP-Rec \cite{HOP_Rec} was created.
 HOP-Rec combines graph based and embedding based methods and performs random walks to enrich the interactions of a user with multi-hop connected items.
 HOP-Rec's better performance compared to MF models indicates that utilizing the connectivity information provides better embeddings.
 Graph Neural Networks (GNN) provides new ideas on how to model graph structure to guide the embedding learning.
-One such approach is GraphSAGE\cite{IND_REP_LEA} which aggregates feture information from a node's neighboorhood e.g. degrees or text attributes.
+One such approach is GraphSAGE\cite{IND_REP_LEA} which aggregates feature information from a node's neighborhood e.g. degrees or text attributes.
 Because of the strengths related to graph convolution, a lot of effort has gone into creating recommendation systems\cite{NGCF_2019,GC_MC,Priceaware}, utilizing GCN on the user-item interaction graph to better capture CF signals in high-hop neighbors.
 But Wu et al. \cite{SGCN} argues that GCN is unnecessaryily complex and proposes a simplified linear model they call Simple Graph Convolution that removes the nonlinearity of GCN and merges multiple weights into one.
 Based on this article and others \cite{PRE_PROP,DEEP_GCN}, HE et al. \cite{lightgcn} proposes LightGCN.
