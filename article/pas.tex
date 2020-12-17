@@ -18,10 +18,4 @@ The adjacency matrix is obtained as follows:
         R^T & 0
     \end{bmatrix}
 \end{gather}
-The embeddings for users and price are calculated as follows,
-\begin{equation}
-    E^{(k+1)} = (D^{\frac{1}{2}}AD^{\frac{1}{2}}E^{(k)}),
-\end{equation}
-where $A$ is the adjacency matrix containing users, items, categories and price, and $D$ is a $(I + U + C + P)$ diagonal matrix, where $D_{ii}$ denotes the sum of the $i-th$ row in the adjacency matrix $A$.
-The $0th$ layer embedding $E^{(0)} \in R^{(I + U + C + P)\times T}$, where $T$ is the embedding size.
-We do not change anything else in LightGCN in this method.
+The embeddings are calculated as described in \autoref{subsubsec:lightgcn-embedding} and there are currently no changes other changes to this method, other than the adjacency matrix containing information about price and category.

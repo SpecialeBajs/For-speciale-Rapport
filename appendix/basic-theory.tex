@@ -40,3 +40,94 @@ Because of this, each time $i$ is increased, a node's new value is therefore aff
 An issue with this propagation function could be that the value of each node now is a sum of each of its neighbors, and therefore loses its own value.
 This could be solved by replacing $A$ with $\hat{A} = A + I$ where $I$ is the identity matrix.
 Doing this the node considers itself a neighbor.
+
+\subsection{Factorization machines}
+Factorization machines(FM) are a general-purpose supervised learning algorithm and were originally introduced by Steffen Rendle \cite{factorization_machines}.
+The main advantage of using FM's is that they perform well with large and sparse datasets, and have a linear complexity.
+When dealing with very sparse datasets where there are many users and items with few interactions, it can be difficult to predict future interactions because there is not enough data to do so.
+This is the problem that FM's solve.
+FM's are able to do this well because they break the independence of the parameters by factorizing them.
+This means that they can utilize the data of one interaction to estimate the data for another interaction.
+Unlike classic matrix factorization models which represents the interactions as a matrix with users and items the FM model represents user-item interactions as tuples of real-valued feature vectors and numeric target variables.
+If we take the yelp data that we have used in \autoref{equal-data} as an example.
+In this data set we have set of users U, items I, categories C and price levels P.
+\begin{itemize}
+	\item $U = {1, 2}$
+	\item $I = {1, 2 ,3}$
+	\item $C = {1, 2}$
+	\item $P = {1, 2}$
+\end{itemize}
+These are the categorical variables in the data set. 
+The interactions in this dataset would then be represented as seen in \autoref{fig:FM-example} where each interaction is a row in the table which in the FM model is considered a feature vector.
+The last column contains the target variables for the corresponding row.
+The target variable is the feature that the model wants to learn from the other features.
+This means that it will try to learn what the relationship is between the combination of features in the feature vector and the value of the target variable.
+This is how supervised machine learning algorithms generally learn.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figures/FM-example.png}
+    \caption{Dataformat used in FM's}
+    \label{fig:FM-example}
+\end{figure}
+The goal of the FM model is to estimate a function $\hat{y}$ from a feature vector $x_i$ to a target domain. 
+It does this by using factorized parametrization to capture feature interactions.
+
+The equation for the model looks like this:
+\[ \hat{y}(x) := w_0 + \sum_{i=1}^{n} w_ix_i + \sum_{i=1}^{n}\sum_{j=i+1}^{n} \big \langle v_i,v_j \big \rangle x_ix_j \]
+Where the parameters that have to be estimated are:
+\[ w_0 \epsilon \mathbb{R}, \qquad \mathbf{w} \epsilon \mathbb{R}^n, \qquad  \mathbf{V}\epsilon \mathbb{R}^{n \times k} \]
+and $\big \langle v_i,v_j \big \rangle$ is the dot product of two vectors of size k:
+\[ \big \langle v_i,v_j \big \rangle := \sum_{f=1}^{k} v_{i,f} \cdot v_{j,f}\]
+
+\begin{itemize}
+	\item $w_0$ which is the global bias
+	\item $w \epsilon \mathbb{R}^n$ are the weights for feature vector $x_i$
+	\item $V \epsilon \mathbb{R}^{nxk}$ is the weight matrix for feature vector combination $v_iv_j$
+\end{itemize}
+A row $v_i$ within V describes the i-th variable with k factors.
+k is a hyperparameter that defines the dimensionality of the factorization.
+By doing this the FM models each interaction by factorizing it which allows it to estimate parameters of high-order interactions under sparsity.
+\subsection{Performance metrics}
+Throughout this subsection we are describing NDCG, recall and precision.
+
+\subsubsection{NDCG}
+Normalized Discounted Cumulative Gain (NDCG) is a measure of ranking quality \cite{NDCG-evaluation}.
+To calculate the value of NDCG, it is necessary to have the Discounted Cumulative Gain (DCG).
+The equation for DCG is,
+\begin{equation}
+    DCG = \sum_{i=1}^{n} \frac{relevance_i}{log_2(i+1)},
+\end{equation}
+where $relevance_i$ is the predicted relevance for item $i$ and $n$ is the total number of items.
+DCG takes the placement into account, so that the array with the most relevant items first in the array will have the largest value \cite{NDCG-evaluation,Handbook}.
+An example could be two arrays with the same values. such as $A = [1, 2, 3, 1]$, and $B = [3, 2, 1, 1]$. The results are $DCG(A) = 4.1925$ and $DCG(B) = 5.1925$, where it can be seen that the array with the most relevant items first has the highest value.
+NDCG normalizes DCG, so that the recommendations can be compared, as the rating can vary from user to user.
+NDCG is calculated as follows,
+\begin{equation}
+    NDCG = \frac{DCG}{iDCG},
+\end{equation}
+where $iDCG$ is the DCG with the ideal order \cite{NDCG-evaluation,Handbook}.
+
+\subsubsection{Recall and Precision}
+Recall and precision are calculated from the possible outcomes of the recommended items, which can be seen in \autoref{tab:possible-results}.
+\begin{table}[]
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \rowcolor[HTML]{FFFFFF}
+                 & Recommended        & Not recommended     \\ \hline
+        Used     & True-Positive (TP) & False-Negative (FN) \\ \hline
+        Not used & False-Positive(FP) & True-negative (TN)  \\ \hline
+    \end{tabular}
+    \caption{Possible outcomes of a recommendation of an item to a user.}
+    \label{tab:possible-results}
+\end{table}
+Precision describes how precise and accurate the model is from the recommended items, taking $TP$ and $FP$ into account.
+Recall describes how accurate the model is related to the items that should be recommended, taking $TP$ and $FN$ into account.
+Precision and recall are calculated as follows,
+\begin{equation}
+    Precision = \frac{\#TP}{\#TP + \# FP}
+\end{equation}
+\begin{equation}
+    Recall = \frac{\#TP}{\#TP + \# FN},
+\end{equation}
+where \# indicates the total number of $TP$, $FP$, and $FN$.
