@@ -1,17 +1,26 @@
 \subsection{Dataset} \label{equal-data}
-When measuring the performance of the different methods it is essential that the datasets are the same.
-Without them being equal the results of the experiments will not be worth comparing.
-Both PUP and LightGCN utilized the yelp dataset according to their papers.
-We did not get the dataset from the PUP implementation and were unable to find the original yelp-2018 dataset from the LightGCN implementation where the price and category were still attached.
-We therefore decided to utilize the yelp-2020 dataset, in which users rank businesses between 1 to 5 stars.
+Both PUP and LightGCN utilized the yelp-2018 dataset to evaluate their methods.
+We did not recieve a dataset from the PUP implementation and the LightGCN implementation's dataset did not preserve categories and pricew for items so could not be used to evaluate PUP.
+Since yelp does not archive old versions of their datasets it was decided to utilize the yelp-2020 dataset\footnote{https://www.kaggle.com/yelp-dataset/yelp-dataset}, in which users rank businesses between 1 to 5 stars.
+For the category data we found a document with all Yelps categories at kaggle\footnote{https://www.kaggle.com/cheedcheed/yelp-categories}.
 Inspired by the PUP method we also decided to only use businesses with the restaurant category.
-What is left is a set of businesses with one or more subcategories that relate to what type of restaurant they are.
-Like PUP we cut off any extra subcategories so that each business now only has one subcategory.
-The single subcategory that an item possesses is referred to as its category in the rest of this paper.
+What is left is a set of businesses with one or more subcategories that relate to what type of restaurant they are such as Mexican, Chinese etc.
+As they do in the PUP implementation, we only retain the first subcategory and remove the rest so that each business now only has one subcategory which will simply be referred to as this items category.
 \\
 PUP has a 60\% training-, 20\% validation- and 20\% test-data split while LightGCN has a 70\% training-, 10\% validation-, and 20\% test-data split.
 It was decided to use the LightGCN split since this was the method we planned to extend.
 \\
 The dataset can be used with or without category and price to compare the different methods.
-It consists of 20091 items and 24384 users.
 We utilized 10 core settings meaning we only use items and users which have had at least 10 interactions.
+The comparison between Yelp-2018 and Yelp-2020 dataset can be seen on \autoref{tab:dataset-comparison}.
+\begin{table*}[]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+                 & users & items & items/users & interactions & sparsity  \\ \hline
+        yelp2018 & 20637 & 18907 & 0.916       & 505785       & 99.8704\% \\ \hline
+        yelp2020 & 24384 & 20091 & 0.824       & 594196       & 99.8787\% \\ \hline
+    \end{tabular}
+    \caption{Difference between ours and the PUP dataset}
+    \label{tab:dataset-comparison}
+\end{table*}
