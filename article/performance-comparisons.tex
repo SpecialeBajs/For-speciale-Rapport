@@ -82,7 +82,7 @@ The best performing $X$ value is 0.5, followed by 0.0 according to our tests.
 Giving prices and categories the same or higher input value as the connection between item and user therefore decreases the performance.
 On \autoref{fig:ndcg-pas-weights} and \autoref{fig:recall-pas-weights} it can be seen that the graphs fluctuate with the input values that were used.
 There could be multiple reasons for this generally not performing well.
-It could be because LightGCN does not utilize feature transformation and the nonlinear activation function.
+It could be because LightGCN does not utilize feature transformation and uses a nonlinear activation function.
 LightGCN performs well, if there are only user and item ids, and the decrease in performance could be because LightGCN is unable to handle the side information of price and category.
 There could also be some contradictions in the data, where LightGCN originally only uses collaborative filtering, and when taking price and category into account, it can contradict each other.\\
 For NGCF changing the input value of price and categories changes almost nothing.
