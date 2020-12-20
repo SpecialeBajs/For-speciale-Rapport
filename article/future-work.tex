@@ -18,14 +18,14 @@ LightGCN does not utilize feature transformation matrices and non-linear activat
 PUP and NGCF does use feature transformation matrices and non-linear activation functions, so if extending LightGCN is not feasible, we might be able to do it with PUP or NGCF.
 
 \subsection{Generalizing feature inputs for LightGCN or Price-Aware recommendation}
-The intuition behind Price-Aware recommendations can easily be put to use for other datasets with other types of data.
-Doing it for the adapted LightGCN requires that adding price and category embeddings gives a reasonable result before it makes sense to generalize it.
+The intuition behind Price-Aware recommendations can be used for other datasets with other types of data.
+Before it would make sense to generalize the feature inputs in the adapted LightGCN, we would first have to make sure that adding the price and category was actually beneficial for the method.
 If extending LightGCN is not feasible, then NGCF could be extended, as this has shown interesting results.
 An example could be if we try to recommend movies to users, then instead of price and category, these could be replaced with actors or genre, or other types of data.
-However, other types of data, such as movies with actors are not necessarily as related to price and category.
+However, other types of data, such as movies with actors are not necessarily as related as price and category are.
 For prices and categories, a user can have different preferences for the price range in different categories.
-The same can apply for actors in movies, where users prefer actors in a specific genre, but these are likely less related than prices and categories.
-Therefore we would need to experiment with different graphs, where users could be connected to items, genres, or actors, and where the item is a bridge between genres, actors, and users.
+The same can apply for actors in movies, where users could prefer different actors in different genres, but these might not be as related as prices and categories.
+Therefore we would need to experiment with different graphs, where users could be connected to items, genres, or actors, or where the item is a bridge between genres, actors, and users.
 An example of a graph that would require experiments could be if the user-item, item-actor, and user-actor graph would perform better than a user-item and item-actor graph.
 
 \subsection{Extending categories}
