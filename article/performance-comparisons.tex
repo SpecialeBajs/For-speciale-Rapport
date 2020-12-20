@@ -117,13 +117,15 @@ However, we did have an initial idea, that the convolutions with price and categ
 
 \subsubsection{Experiment with one convolution}
 An experiment was conducted to see what influence changing the number of convolutions to one would have on the performance in NDCG and RECALL in the tested methods.
+The only method that is not changed is PUP, as it already runs with one convolution.
 The results from this experiment can be seen in \autoref{tab:one-convolution}.
+For PUP it is the same data as the previous test in \autoref{tab:results-with-many-methods}, as this was already run with only one convolution.
 When comparing the results with the previous experiment in \autoref{tab:results-with-many-methods} that used 3 convolutions for all methods, except PUP which used 1, it can be seen that NGCF and LightGCN performs worse when evaluating them with Recall@50 and NDCG@50.
 However for NGCF PAS it can be seen that the number of convolutions have little influence on the results.
 Its performance decreased with 0.0001 in Recall@50 and improved with 0.00082 in NDCG@50.
-LGCN PAS performs significantly worse, which can be seen on \autoref{fig:one-con-ndcg} and \autoref{fig:one-con-recall}.
+LGCN PAS performs worse, which can be seen on \autoref{fig:one-con-ndcg} and \autoref{fig:one-con-recall}.
 The results from this experiment show that the benefits of additional convolutions depend on the method.
-Methods such as NGCF PAS and LGCN PAS do not get a large benefit from the additional convolutions, but for LightGCN and NGCF the additional convolutions improve their performance.
+NGCF PAS do not benefit from the additional convolutions, but for LightGCN and NGCF the additional convolutions improve their performance.
 \begin{table}[]
     \centering
     \begin{tabular}{|l|l|l|}
