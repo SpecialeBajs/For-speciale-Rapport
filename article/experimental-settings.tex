@@ -7,11 +7,10 @@ The batch size is set to 2048.
 For all test in \autoref{subsec:performance-com}, the number of convolutions are set to 3.
 The settings for PUP are different as the authors of PUP used other settings.
 The batch size for PUP is 1024, and the initial learning rate is $1e-2$
-The number convolution is set to 1.
 PUP never specifies in their paper, how many convolutions they used in their experiments, but with the code we received, we came to the conclusion that they only use 1 convolution in PUP.
 
 \subsubsection{Evaluation metrics}
-The evaluation metrics for rating top k recommendation, we utilize Recall@K and NDCG@K where K is set to 50 and 100.
+The evaluation metrics used for rating top k recommendation are Recall@K and NDCG@K where K is set to 50 and 100.
 Throughout this subsection we describe Parameter settings, NDCG, recall and precision.
 
 \subsubsection{NDCG}
