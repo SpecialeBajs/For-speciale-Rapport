@@ -2,29 +2,29 @@
 In this section we take a look at existing work that relates to what we have studied to acquire the knowledge to extend the LightGCN model.
 
 \subsection{Collaborative Filtering}
-Collaborative Filtering (CF) is one of the most prevalent techniques in current recommendation systems\cite{YT_rec,NGCF_2019,Pint_rec,COL_MEM_NET}.
-One of the most common ways to achieve CF is by parameterizing users and items as embeddings and afterwards learning the embedding parameters by reconstructing historical user-item interaction from these embeddings\cite{NGCF_2019}
+Collaborative Filtering (CF) is one of the most prevalent techniques in current recommendation systems \cite{YT_rec,NGCF_2019,Pint_rec,COL_MEM_NET}.
+One of the most common ways to achieve CF is by parameterizing users and items as embeddings and afterwards learning the embedding parameters by reconstructing historical user-item interaction from these embeddings \cite{NGCF_2019}.
 One of the earliest CF models was Matrix Factorization (MF) \cite{Matrix-factorization-techniques, BAY_PER_RAN}.
 MF  projects the ID of each user and item into embedding vectors and uses the dot product between them to predict an user-item interaction.
 While the dot product can be used to predict user-item interactions its linearity makes it unable to capture more complex relationships between users and items.
 Newer more sophisticated techniques utilize neural networks to enhance the interaction modeling while keeping the same embedding as the older MF models.
-Some examples of this are the NMF model\cite{NEU_COL_FIL} which uses nonlinear neural networks as its interaction function and the LRML model\cite{LAT_REL_MET} which utilizes Euclidean distance metrics to model the interaction strength.
+Some examples of this are the NMF model \cite{NEU_COL_FIL} which uses nonlinear neural networks as its interaction function and the LRML model \cite{LAT_REL_MET} which utilizes Euclidean distance metrics to model the interaction strength.
 Other approaches include trying to improve the embedding function.
-To do this a lot of effort has been done to take side information into account such as item content\cite{ATT_COL_FIL_MUL}, social relations\cite{REC_SOC_USE} and external knowledge graphs\cite{KGAT, KNO_GRA_REC}.
-Other methods use the weighted average of the ID embeddings of historical items as the pre-existing features of a user and thereby improving the user representation\cite{SVD_PLUSPLUS,FISM}.
- 
+To do this a lot of effort has been done to take side information into account such as item content \cite{ATT_COL_FIL_MUL}, social relations \cite{REC_SOC_USE} and external knowledge graphs \cite{KGAT, KNO_GRA_REC}.
+Other methods use the weighted average of the ID embeddings of historical items as the pre-existing features of a user and thereby improving the user representation \cite{SVD_PLUSPLUS,FISM}.
+
 \subsection{Graph-Based Recommendation}
 Another interesting technique is to look at the user-item graph structure and exploit it for better performance in recommendation systems.
-Some of the earlier methods use label propagation such as ItemRank\cite{ItemRank} and BiRank\cite{BiRank}.
-To get the score of items for a specific user these methods define the labels as the users interacted items and propagate the labels on the graph ie. encouraging connected nodes to have similar labels.
-These methods lack model parameters and are therefore not able to properly optimize the objective function\cite{NGCF_2019}.
+Some of the earlier methods use label propagation such as ItemRank \cite{ItemRank} and BiRank \cite{BiRank}.
+To get the score of items for a specific user these methods define the labels as the users interacted items and propagate the labels on the graph i.e. encouraging connected nodes to have similar labels.
+These methods lack model parameters and are therefore not able to properly optimize the objective function \cite{NGCF_2019}.
 To work around this problem methods like HOP-Rec \cite{HOP_Rec} were created.
 HOP-Rec combines graph-based and embedding based methods and performs random walks to enrich the interactions of a user with multi-hop connected items.
 HOP-Rec's better performance compared to MF models indicates that utilizing the connectivity information provides better embeddings.
 Graph Neural Networks (GNN) provide new ideas on how to model graph structure to guide the embedding learning.
-One such approach is GraphSAGE\cite{IND_REP_LEA} which aggregates feature information from a node's neighborhood e.g. degrees or text attributes.
-Because of the strengths related to graph convolution, a lot of effort has gone into creating recommendation systems\cite{NGCF_2019,GC_MC,Priceaware}, utilizing GCN on the user-item interaction graph to better capture CF signals in high-hop neighbors.
+One such approach is GraphSAGE \cite{IND_REP_LEA} which aggregates feature information from a node's neighborhood e.g. degrees or text attributes.
+Because of the strengths related to graph convolution, a lot of effort has gone into creating recommendation systems \cite{NGCF_2019,GC_MC,Priceaware}, utilizing GCN on the user-item interaction graph to better capture CF signals in high-hop neighbors.
 But Wu et al. \cite{SGCN} argues that GCN is unnecessarily complex and proposes a simplified linear model they call Simple Graph Convolution that removes the nonlinearity of GCN and merges multiple weights into one.
 Based on this article and others \cite{PRE_PROP,DEEP_GCN}, HE et al. \cite{lightgcn} proposes LightGCN.
 LightGCN and SGC seem similar but SGC is for node classification and simplifies GCN for efficiency and interpretability, while LightGCN is for CF.
-nonlinearity and weight matrices are not useful for CF and make model training less effective.
+Nonlinearity and weight matrices are not useful for CF and make model training less effective.
