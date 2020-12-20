@@ -113,14 +113,14 @@ However, we did have an initial idea, that the convolutions with price and categ
     \label{fig:recall-ngcfpas-weights}
 \end{figure}
 
-\subsubsection{One convolution experiment}
-An experiment was conducted to see the influence of only using one convolution in the different methods.
-The results can be seen in \autoref{tab:one-convolution}.
-When comparing the results with the experiment in \autoref{tab:results-with-many-methods} that used 3 convolutions for all methods except PUP, it can be seen that NGCF and LightGCN performs a bit worse for Recall@50 and NDCG@50.
-However for NGCF PAS it can be seen that the convolutions have little influence on the results.
-It performs 0.0001 worse in Recall@50 and improve 0.00082 in NDCG@50.
-LGCN PAS is significantly worse, which also can be seen on \autoref{fig:one-con-ndcg} and \autoref{fig:one-con-recall}.
-LGCN PAS actually becomes worse as it trains when only using one convolution.
+\subsubsection{Experiment with one convolution}
+An experiment was conducted to see what influence it would have on the performance of the methods to change the number of convolutions to one.
+The results from this experiment can be seen in \autoref{tab:one-convolution}.
+When comparing the results with the previous experiment in \autoref{tab:results-with-many-methods} that used 3 convolutions for all methods except PUP, it can be seen that NGCF and LightGCN have a worse performance when evaluating them with Recall@50 and NDCG@50.
+However for NGCF PAS it can be seen that the number of convolutions have little influence on the results.
+Its performance decreased with 0.0001 in Recall@50 and improved with 0.00082 in NDCG@50.
+LGCN PAS performs significantly worse, which can be seen on \autoref{fig:one-con-ndcg} and \autoref{fig:one-con-recall}.
+LGCN PAS actually performs worse as it trains when only using one convolution.
 \begin{table}[]
     \centering
     \begin{tabular}{|l|l|l|}
