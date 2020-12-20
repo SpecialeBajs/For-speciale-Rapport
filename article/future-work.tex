@@ -14,7 +14,8 @@ An extension of the embeddings in LightGCN could be implemented by combining the
 Inspired by utilizing \autoref{eq:price-aware-prediction}, we could use the embeddings for price and category.
 An alternative could be trying to combine the original LightGCN embedding without price and category for users and items, as these capture the collaborative filtering quite well and then adding the price and category embeddings.
 A possible outcome of this can however be that there still are contradictions between the collaborative signals, and price and category signals.
-It can also be that the missing weight matrices and activation function in LightGCN that is used in Price-Aware recommendation and NGCF does not make it suited for handling side information.
+LightGCN does not utilize feature transformation matrices and non-linear activation functions, which can make it not suited for handling side information.
+PUP and NGCF does use feature transformation matrices and non-linear activation functions, so if extending LightGCN is not feasible, we might be able to do it with PUP or NGCF.
 
 \subsection{Generalizing feature inputs for LightGCN or Price-Aware recommendation}
 The intuition behind Price-Aware recommendations can easily be put to use for other datasets with other types of data.
