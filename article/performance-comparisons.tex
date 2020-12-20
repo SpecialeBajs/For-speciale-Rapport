@@ -155,15 +155,15 @@ NGCF PAS do not benefit from the additional convolutions, but for LightGCN and N
 \end{figure}
 
 \subsubsection{LGCN PAS performance}
-As can be seen from the results in the experiments that we ran, our extension of LightGCN called LGCN PAS performed considerably worse then all of the other methods.
+As can be seen from the results in the experiments that we ran, our extension of LightGCN called LGCN PAS performed considerably worse than all of the other methods.
 By looking at the graphs \autoref{fig:ndcg-pas-weights} and \autoref{fig:recall-pas-weights} we can see that LGCN PAS does not really improve consistently while training the model.
 When the weights are set to 1 the results from the training process seem random and the performance will fluctuate either negatively or positively for every step.
-The results of the evaluations fluctuate less when the weights are changed  but we still don't see a consistent improvement for each step like we see with the other methods in \autoref{fig:ndcg-50k-lgcn-ngcf-ngcfpas-pas} and \autoref{fig:recall-50k-lgcn-ngcf-ngcfpas-pas}.
+The results of the evaluations fluctuate less when the weights are changed but we still don't see a consistent improvement for each step like we see with the other methods in \autoref{fig:ndcg-50k-lgcn-ngcf-ngcfpas-pas} and \autoref{fig:recall-50k-lgcn-ngcf-ngcfpas-pas}.
 There are multiple factors that could be the reasoning behind why LightGCN is unable to handle the additional information added to the adjacency matrix and the embeddings.
 The fact that the evaluation of the model while training yields such inconsistent results could indicate that the additional data is causing noise instead of improving the model. 
 Our initial thought was that this could be caused by the number of convolutions that LightGCN performs on the graph.
 The hypothesis was that because there are only 4 price levels and every item is connected to a price level, then the graph would become hyperconnected after a few convolutions.
 We ran experiments to test how this affected the results and the conclusion was that LGCN PAS actually performed worse with only one convolution which can be seen in \autoref{sec:experiment-one-convolution}.
-Another reason could be that adding the additional information to the embeddings creates noise that disturbs the collaborative signals in the model.
+Another reason could be that adding additional information to the embeddings creates noise that disturbs the collaborative signals in the model.
 In Price-aware recommendation they use a method inspired by factorization machines to factorize the embeddings and control how much each type of embedding should affect the recommendation.
-Our approach is quite naïve compared to how price-aware recommendation handle the embeddings which is most likely the reason behind why our method did not perform very well.
+Our approach is quite naïve compared to how price-aware recommendation handles the embeddings which is most likely the reason behind why our method did not perform very well.
