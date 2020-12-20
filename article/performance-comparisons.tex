@@ -121,6 +121,8 @@ However for NGCF PAS it can be seen that the number of convolutions have little 
 Its performance decreased with 0.0001 in Recall@50 and improved with 0.00082 in NDCG@50.
 LGCN PAS performs significantly worse, which can be seen on \autoref{fig:one-con-ndcg} and \autoref{fig:one-con-recall}.
 LGCN PAS actually performs worse as it trains when only using one convolution.
+This experiment shows that the benefit of convolutions depends a lot on what method is used.
+Method as NGCF PAS does not have a large benefit from these convolutions, but for LightGCN and NGCF the improvement is larger.
 \begin{table}[]
     \centering
     \begin{tabular}{|l|l|l|}
