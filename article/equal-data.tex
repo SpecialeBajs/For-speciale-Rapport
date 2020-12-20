@@ -1,10 +1,10 @@
 \subsection{Dataset} \label{equal-data}
 Both PUP and LightGCN utilized the yelp-2018 dataset to evaluate their methods.
-We did not recieve a dataset from the PUP implementation and the LightGCN implementation's dataset did not preserve categories and pricew for items so could not be used to evaluate PUP.
+We did not receive a dataset from the PUP implementation and the LightGCN implementation's dataset did not preserve categories and prices for items so this could not be used to evaluate PUP.
 Since yelp does not archive old versions of their datasets it was decided to utilize the yelp-2020 dataset\footnote{https://www.kaggle.com/yelp-dataset/yelp-dataset}, in which users rank businesses between 1 to 5 stars.
-For the category data we found a document with all Yelps categories at kaggle\footnote{https://www.kaggle.com/cheedcheed/yelp-categories}.
+For the category data, we found a document with all Yelps categories at Kaggle\footnote{https://www.kaggle.com/cheedcheed/yelp-categories}.
 Inspired by the PUP method we also decided to only use businesses with the restaurant category.
-What is left is a set of businesses with one or more subcategories that relate to what type of restaurant they are such as Mexican, Chinese etc.
+What is left is a set of businesses with one or more subcategories that relate to what type of restaurant they are such as Mexican, Chinese, etc.
 As they do in the PUP implementation, we only retain the first subcategory and remove the rest so that each business now only has one subcategory which will simply be referred to as this items category.
 \\
 PUP has a 60\% training-, 20\% validation- and 20\% test-data split while LightGCN has a 70\% training-, 10\% validation-, and 20\% test-data split.
@@ -18,8 +18,8 @@ The comparison between Yelp-2018 and Yelp-2020 dataset can be seen on \autoref{t
     \begin{tabular}{|l|l|l|l|l|l|}
     \hline
                  & users & items & items/users & interactions & sparsity  \\ \hline
-        yelp2018 & 20637 & 18907 & 0.916       & 505785       & 99.8704\% \\ \hline
-        yelp2020 & 24384 & 20091 & 0.824       & 594196       & 99.8787\% \\ \hline
+        Yelp2018 & 20637 & 18907 & 0.916       & 505785       & 99.8704\% \\ \hline
+        Yelp2020 & 24384 & 20091 & 0.824       & 594196       & 99.8787\% \\ \hline
     \end{tabular}
     \caption{Difference between ours and the PUP dataset}
     \label{tab:dataset-comparison}
