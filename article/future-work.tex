@@ -1,9 +1,34 @@
 \section{Future work}
-For our master thesis we will continue to explore recommendation systems and continue in the path of LightGCN and Price-aware recommendation.
-There are several topics related to these implementation to be investigated to gain a better understanding of how recommender systems can be improved.
+For our master thesis, we will continue to explore recommendation systems and continue in the path of LightGCN and Price-aware recommendation.
+There are several topics related to these implementations to be investigated to gain a better understanding of how recommender systems can be improved.
 The hypothesis for the master thesis are:
 \begin{itemize}
-    \item Adding price and category embeddings to LightGCN will improve performance of the simple price aware extension.
+    \item Adding price and category embeddings to LightGCN will improve the performance of the simple price-aware extension.
     \item If adding price and category embeddings improves the performances, then it can get generalized to include other features than price and category.
     \item Price-aware recommendation can be generalized so other features can get integrated to improve the recommendation performance.
+    \item Extending categories so one item can have multiple categories, that way it will better capture cross-category price preferences.
 \end{itemize}
+
+\subsection{Adding price-aware embeddings to LightGCN}
+An extension of the embeddings in LightGCN could be implemented by combining the embeddings from the different methods.
+Inspired by utilizing \autoref{eq:price-aware-prediction}, we could use the embeddings for price and category.
+An alternative could be trying to combine the original LightGCN embedding without price and category for users and items, as these capture the collaborative filtering quite well and then adding the price and category embeddings.
+A possible outcome of this can however be that there still are contradictions between the collaborative signals, and price and category signals.
+It can also be that the missing weight matrices and activation function in LightGCN that is used in Price-Aware recommendation and NGCF does not make it suited for handling side information.
+
+\subsection{Generalizing feature inputs for LightGCN or Price-Aware recommendation}
+The intuition behind Price-Aware recommendations can easily be put to use for other datasets with other types of data.
+Doing it for the adapted LightGCN requires that adding price and category embeddings gives a reasonable result before it makes sense to generalize it.
+If extending LightGCN is not feasible, then NGCF could be extended, as this has shown interesting results.
+An example could be if we try to recommend movies to users, then instead of price and category, these could be replaced with actors or genre, or other types of data.
+However, other types of data, such as movies with actors are not necessarily as related to price and category.
+For prices and categories, a user can have different preferences for the price range in different categories.
+The same can apply for actors in movies, where users prefer actors in a specific genre, but these are likely less related than prices and categories.
+Therefore we would need to experiment with different graphs, where users could be connected to items, genres, or actors, and where the item is a bridge between genres, actors, and users.
+An example of a graph that would require experiments could be if the user-item, item-actor, and user-actor graph would perform better than a user-item and item-actor graph.
+
+\subsection{Extending categories}
+To prove their concept PUP decided to only retain one category for each item even though the dataset used has multiple categories for each item.
+Having multiple categories might help to better capture cross-category price preferences.
+It might also increase noise by having too much information to accurately predict items.
+This could be alleviated by having categories in a ranked list and having weights that try to reduce the influence of too many categories on one item.
