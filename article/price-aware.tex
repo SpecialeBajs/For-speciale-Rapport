@@ -19,6 +19,7 @@ The intuition about the category is the same as with the price.
 The final purchase prediction $s$ between user $u$ and item $i$ is formulated as follows:
 \begin{equation}
     s = e^T_u e_i + e^T_u e_p + e^T_i e_p + \alpha (e^T_u e_c + e^T_u e_p + e^T_c e_p),
+    \label{eq:price-aware-prediction}
 \end{equation}
 where $e_u$, $e_i$, $e_c$, and $e_p$ is the embeddings for user, item, category and price, respectively.
 $\alpha$ is a hyper-parameter used to balance the categories influence on the prediction.
