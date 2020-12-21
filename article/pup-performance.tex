@@ -1,17 +1,17 @@
 \subsection{PUP performance}
-The PUP implementation performed worse than NGCF in our testing contrary to the reportings in \cite{Priceaware}.
-We have several hypothesis about why this might be happening.
-First we will examine the dataset used.
+The PUP implementation performed worse than NGCF in our testing contrary to the reporting in the paper of Price-aware recommendation\cite{Priceaware}.
+We have several hypotheses about why this might be happening.
+First, we will examine the dataset used.
 As mentioned in \autoref{equal-data} we had to make a new dataset that could be used on all methods.
 This dataset was made to resemble the PUP dataset as much as possible.
-Looking at \autoref{tab:dataset-comparison} we can see that our new dataset has more users, items and interactions and the item to user ratio has dropped by about 10\% but the sparsity only increased by 0.0013\%.
+Looking at \autoref{tab:dataset-comparison} we can see that our new dataset has more users, items, and interactions and the item to user ratio has dropped by about 10\% but the sparsity only increased by 0.0013\%.
 Our first thought was that the sparsity or that the item to user ratio might have changed which could have affected PUP more than the other methods.
 It seems unlikely that such a small increase in sparsity would alter the results as much but it is still a possibility.
 The change in item to user ratio is however a bit more significant and can be a reason for PUP to not perform as well.
 Further more, it is not just PUP performing worse on our data but also NGCF performing better compared to \cite{Priceaware}.
-NGCF performs 7.8\% and 8.6\% better in Recall@50 and NDCG@50 respectively, while PUP performs 3.9\% and 4.4\% worse n Recall@50 and NDCG@50 respectively.
+NGCF performs 7.8\% and 8.6\% better in Recall@50 and NDCG@50 respectively, while PUP performs 3.9\% and 4.4\% worse in Recall@50 and NDCG@50 respectively.
 Another hypothesis was that they might have run NGCF with a different amount of convolutions compared to us which could have made NGCF perform worse in their tests.
 Because they did not specify what amount of convolutions they performed their test with we simply ran NGCF at both 1 and 3 convolutions.
-The performance of NGCF was noticable better with 3 convolutions compared to 1.
+The performance of NGCF was noticeable better with 3 convolutions compared to 1.
 But at 1 convolution NGCF still outperforms PUP on our dataset, as seen on \autoref{tab:one-convolution}.
-In the end we have to conclude that we could not get the same performance from the PUP implementation as the authors managed to achieve.
+In the end, we have to conclude that we could not get the same performance from the PUP implementation as the authors managed to achieve.
