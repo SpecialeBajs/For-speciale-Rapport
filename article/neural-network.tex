@@ -1,16 +1,16 @@
 \subsection{Neural Networks}
 Neural networks are a multi-layered collection of nodes which have an input layer, hidden layers, and an output layer \cite{AI-book}.
 The input of each node is the output of all nodes in the previous layer.
-Each of these connections in the network has an individual weight associated with it.
+Each of these connections in the network have an individual weight associated with them.
 To get the value of a node not in the input layer, the output of all the nodes in the previous layer are added together with each individual weight along the connection that it travels.
-All these weighted values are then fed to an aggregation function which result is given to an activation function.
-The activation function is usually the Sigmoid, Sign, or Relu function.
+All these weighted values are then fed to an aggregation function and the result is given to an activation function.
+The activation function is usually the Sigmoid, Sign, or ReLU function.
 \\
-Neural networks can have any number of nodes in the input layer, hidden layers, and output layer and they do not need to be the same amount.
+Neural networks can have any number of nodes in the input layer, hidden layers, and output layer and each layer does not have to have the same amount of nodes.
 Furthermore, it can have any number of hidden layers.
 \\
-Neural networks have had considerable success in low-level reasoning where lots of training data are available.
-They learn by giving the input layer values and then have the network compute an output value.
+Neural networks have had considerable success in low-level reasoning where lots of training data is available.
+They learn by having the the network compute an output value by inputting some value to the input layer.
 The output value is then compared to the real value of the inputs and based on the margin of error we go backwards through the network adjusting each weight.
 This is called back propagation.
 After doing this enough times or when the margin of error is lower than a predefined value the network is considered trained and can be tested on new data or be applied to a real-world scenario.
@@ -25,7 +25,7 @@ The equation for the loss function will then look like this:
 \[E(x_{uij}) = ln(1+e^{-x_{uij}})\]
 
 \subsubsection{Adam optimization algorithm}\label{subsubsec:Adam}
-The way that Adam differs from the classical Stochastic gradient descent algorithm is that instead of having a single learning rate for all weights, it has a learning rate that is maintained for each network weight\cite{Adam}.
+The way that Adam differs from the classical stochastic gradient descent algorithm is that instead of having a single learning rate for all weights, it has a learning rate that is maintained for each network weight \cite{Adam}.
 This learning rate is then separately adapted during the learning process.
 The algorithm combines the advantages of two stochastic gradient descent algorithms Adaptive Gradient Algorithm (AdaGrad) and Root Mean Square Propagation (RMSProp).
 Adam calculates an exponential moving average of the gradient and the squared gradient.
@@ -33,4 +33,4 @@ It then has two parameters $\beta_1$ and $\beta_2$ that control the decay of the
 The Adam optimization algorithm is implemented and can be used freely in both PyTorch and Tensorflow.
 It is also an efficient algorithm that has little memory requirements.
 The efficiency, availability and performance of the algorithm makes it a good candidate for many machine learning problems.
-The main papers that we investigated LightGCN \cite{lightgcn} and Price-aware Recommendation\cite{Priceaware}, both use Adam as their optimization algorithm.
+The main papers that we investigated LightGCN \cite{lightgcn}, NGCF \cite{NGCF_2019} and Price-aware Recommendation\cite{Priceaware}, both use Adam as their optimization algorithm.

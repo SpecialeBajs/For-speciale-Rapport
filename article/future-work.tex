@@ -1,7 +1,7 @@
 \section{Future work}
 For our master thesis, we will continue to explore recommendation systems and continue in the path of LightGCN and PUP.
 There are several topics related to these implementations to be investigated to gain a better understanding of how recommender systems can be improved.
-The hypothesis for the master thesis are:
+The hypotheses for the master thesis are:
 \begin{itemize}
     \item Adding price and category embeddings to LightGCN will improve the performance of the simple PUP extension.
     \item If adding price and category embeddings improves the performances, then it can get generalized to include other features than price and category.
@@ -14,17 +14,16 @@ An extension of the embeddings in LightGCN could be implemented by combining the
 Inspired by utilizing \autoref{eq:price-aware-prediction}, we could use the embeddings for price and category.
 An alternative could be trying to combine the original LightGCN embedding without price and category for users and items, as these capture the collaborative filtering quite well and then adding the price and category embeddings.
 A possible outcome of this can however be that there still are contradictions between the collaborative signals, and price and category signals.
-LightGCN does not utilize feature transformation matrices and non-linear activation functions, which can make it not suited for handling side information.
-PUP and NGCF does use feature transformation matrices and non-linear activation functions, so if extending LightGCN is not feasible, we might be able to do it with PUP or NGCF.
+LightGCN does not utilize feature transformation and non-linear activation functions, which can make it not suited for handling side information.
+PUP and NGCF do use feature transformation and non-linear activation functions, so if extending LightGCN is not feasible, we should be able to do it with NGCF.
 
 \subsection{Generalizing feature inputs for LightGCN or PUP}
 The intuition behind PUP can be used for other datasets with other types of data.
 Before it would make sense to generalize the feature inputs in the adapted LightGCN, we would first have to make sure that adding the price and category was actually beneficial for the method.
 If extending LightGCN is not feasible, then NGCF could be extended, as this has shown interesting results.
 An example could be if we try to recommend movies to users, then instead of price and category, these could be replaced with actors or genre, or other types of data.
-However, other types of data, such as movies with actors are not necessarily as related as price and category are.
 For prices and categories, a user can have different preferences for the price range in different categories.
-The same can apply for actors in movies, where users could prefer different actors in different genres, but these might not be as related as prices and categories.
+The same can be applied for actors in movies, where users could prefer different actors in different genres, but these might not be as related as prices and categories.
 Therefore we would need to experiment with different graphs, where users could be connected to items, genres, or actors, or where the item is a bridge between genres, actors, and users.
 
 \subsection{Extending categories}

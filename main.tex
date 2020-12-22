@@ -25,7 +25,7 @@
 
 \pretitle{\begin{center}\Huge\bfseries} % Article title formatting
 \posttitle{\end{center}} % Article title closing formatting
-\title{Article Title} % Article title
+\title{Exploring Recommender Systems with Graph Convolutional Networks} % Article title
 \author{%
 \textsc{Frederik Valdemar Schrøder, Jens Petur Tróndarson, Mathias Møller Lybech} \\[1ex] % Your name
 \normalsize Aalborg University \\ % Your institution
@@ -40,7 +40,18 @@
 \date{\today} % Leave empty to omit a date
 \renewcommand{\maketitlehookd}{%
 \begin{abstract}
-\noindent \blindtext % Dummy abstract text - replace \blindtext with your abstract text
+\noindent  
+Graph Convolutional Network (GCN) is a state-of-the-art method for collaborative filtering (CF).
+Throughout this paper we focus on two new methods for CF: LightGCN and Price-aware Recommendation with Graph Convolutional Networks (PUP).
+LightGCN is inspired from Neural Graph collaborative Filtering (NGCF), and is a recommender system that only take the node ID of item and users into account.
+PUP also utilize CF, but takes prices and categories into account. 
+We take a closer look at the main differences between LightGCN, NGCF and PUP.
+After we have found the main differences between these, we extend LightGCN and NGCF by adding prices and categories as nodes in their input graph.
+Through our experiments we show that our extension was unsuccesfull in improving the performance of these methods.
+In our experiments we run our extension with different hyper parameters to see what effect they have on the results.
+We also compare LightGCN to some other state-of-the-art methods and show that it performs significantly better than PUP, NGCF and the other methods.
+From the results of these experiments we present some reasons to why our extension performed so poorly.
+We end the paper by presenting some possible hypotheses that we can continue to work on in our master thesis.
 \end{abstract}
 }
 
