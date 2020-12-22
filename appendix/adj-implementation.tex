@@ -1,11 +1,11 @@
 \section{Adjacency implementation}\label{app:adj-impl}
-The implementations of the adjacency matrix in LightGCN and Price-aware recommendation are described in this section.
+The implementations of the adjacency matrix in LightGCN and PUP are described in this section.
 
 \subsection{LightGCN}
 The adjacency matrix is implemented as a sparse matrix using SciPy that creates a dictionary of keys, where two keys indicate the position in the matrix, and the value is 1 if there is a connection.
 
-\subsection{Price-aware recommendation}
-The adjacency matrix in price-aware recommendation is also implemented as a sparse matrix using SciPy.
+\subsection{PUP}
+The adjacency matrix in PUP is also implemented as a sparse matrix using SciPy.
 This is done by creating two arrays, row and column.
 The row and column are both the length of all interactions plus two times the amount of items.
 We start by for each user inserting their id as many times to the array as the number of items that they have interacted with.

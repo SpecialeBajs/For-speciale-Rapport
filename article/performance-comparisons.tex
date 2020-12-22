@@ -1,11 +1,11 @@
 \subsection{Performance comparisons}\label{subsec:performance-com}
 As can be seen on \autoref{tab:results-with-many-methods} LightGCN outperforms all the other methods by a significant amount.
-With our dataset NGCF performs better than PUP by a small amount, even though Price-Aware recommendation in their paper showcased the opposite \cite{Priceaware}.
-This is due to NGCF performing better in our dataset, compared to Price-Awares result, while PUP also performing worse.
+With our dataset NGCF performs better than PUP by a small amount, even though  PUP in their paper showcased the opposite \cite{Priceaware}.
+This is due to NGCF performing better in our dataset, compared to PUP's result, while PUP also performing worse.
 This could be because of the changes in density in the dataset, which was described in \autoref{equal-data}.
-Price-Aware recommendation also used a Yelp dataset from 2018 for their experiments, while our Yelp dataset is from 2020 and therefore is a bit larger than theirs.
-The results also showcase, that there is a large decrease in performance, when adding prices and categories to the adjacency matrix in LightGCN, which makes it perform worse than any of other baseline methods.
-For NGCF PAS the same changes in input only makes it differentiate negatively by a small amount and actually still performs better than PUP.
+PUP also used a Yelp dataset from 2018 for their experiments, while our Yelp dataset is from 2020 and therefore is a bit larger than theirs.
+The results also showcase, that there is a large decrease in performance in LGCN PAS compared to LightGCN, adding price and categories to LightGCN's adjacency matrix makes it perform worse than any of the other baseline methods.
+For NGCF PAS it only makes it differentiate negatively by a small amount and actually still performs better than PUP.
 \begin{table*}[h!]
     \centering
     \begin{tabular}{|l|l|l|l|l|}
@@ -26,10 +26,10 @@ For NGCF PAS the same changes in input only makes it differentiate negatively by
 \end{table*}
 The recall@50 and NDCG@50 for NGCF, NGCF PAS, LightGCN and LGCN PAS can be seen on \autoref{fig:ndcg-50k-lgcn-ngcf-ngcfpas-pas} and \autoref{fig:recall-50k-lgcn-ngcf-ngcfpas-pas}.
 Recall@100 and NCDG@100 for the same methods can be seen on \autoref{fig:ndcg-100k-lgcn-ngcf-ngcfpas-pas} and \autoref{fig:recall-100k-lgcn-ngcf-ngcfpas-pas}.
-The figures show that there is not a big difference between the NGCF and NGCF PAS graphs and that NGCF outperforms NGCF PAS by 3.48\% in Recall\@50, 1.04 in NDCG\@50, 1.01 in Recall\@100 and 1.02\% in NDCG\@100.
-However for LightGCN and LGCN Pas, there is a large difference.
+The figures show that there is not a big difference between the NGCF and NGCF PAS graphs and that NGCF outperforms NGCF PAS by 3.48\% in Recall\@50, 1.04\% in NDCG\@50, 1.01\% in Recall\@100 and 1.02\% in NDCG\@100.
+However for LightGCN and LGCN PAS, there is a large difference.
 LGCN PAS has a large decrease in performance, and the graph fluctuates a lot, and does not improve when training.
-In fact LGCN performs better by 36.6\% in Recall\@50, 48.3 in NDCG\@50, 44.4\% in Recall\@100 and 56.3\% in NDCG\@100.
+In fact LightGCN performs better by 36.6\% in Recall\@50, 48.3\% in NDCG\@50, 44.4\% in Recall\@100 and 56.3\% in NDCG\@100.
 \begin{figure}
     \includegraphics[width=\linewidth]{figures/graphs/ndcg-50k-lgcn-ngcf-ngcfpas-pas.png}
     \caption{NDCG$@$50k on LightGCN, NGCF, NGCF PAS and PAS.}
@@ -57,7 +57,7 @@ In fact LGCN performs better by 36.6\% in Recall\@50, 48.3 in NDCG\@50, 44.4\% i
 
 \subsubsection{Hyperparameter experiment}
 As described in \autoref{subsec:simple-extension}, we utilize a hyperparameter that is inserted into the adjacency matrix, whenever there is a connection between the item nodes and category nodes, or item nodes and price nodes.
-Experiments are done with the hyperparameter $X$ in LGCN PAS and NGCF PAS with the values $0.0$, $0.5$, $1.0$ and $2.0$ to see what effect this has on the performance.
+Experiments are done with this hyperparameter $x$ in LGCN PAS and NGCF PAS with the values $0.0$, $0.5$, $1.0$ and $2.0$ to see what effect this has on the performance.
 \begin{table*}[h!]
     \centering
     \begin{tabular}{|l|l|l|l|l|}
@@ -77,19 +77,18 @@ Experiments are done with the hyperparameter $X$ in LGCN PAS and NGCF PAS with t
     \caption{Results for the experiment using different input values.}
     \label{tab:hyperparameter-results}
 \end{table*}
-As can be seen in \autoref{tab:hyperparameter-results} inserting categories and price into the adjacency matrix decreases the performance compared to LightGCN.
-The best performing $X$ value is 0.5, followed by 0.0 according to our tests.
+As can be seen in \autoref{tab:hyperparameter-results} inserting categories and price into the adjacency matrix decreases the performance in LGCN PAS compared to LightGCN.
+The best performing $x$ value is 0.5, followed by 0.0 according to our tests.
 Giving prices and categories the same or higher input value as the connection between item and user therefore decreases the performance.
 On \autoref{fig:ndcg-pas-weights} and \autoref{fig:recall-pas-weights} it can be seen that the graphs fluctuate with the input values that were used.
 There could be multiple reasons for this generally not performing well.
-It could be because LightGCN does not utilize feature transformation and uses a nonlinear activation function.
+It could be because LightGCN does not utilize feature transformation and does not use a nonlinear activation function.
 LightGCN performs well, if there are only user and item ids, and the decrease in performance could be because LightGCN is unable to handle the side information of price and category.
 There could also be some contradictions in the data, where LightGCN originally only uses collaborative filtering, and when taking price and category into account, it can contradict each other.\\
-For NGCF changing the input value of price and categories changes almost nothing.
-This can also be seen on \autoref{fig:ndcg-pas-weights} and \autoref{fig:recall-ngcfpas-weights}.
+For NGCF PAS changing the input value of price and categories changes almost nothing.
+This can also be seen on \autoref{fig:ndcg-ngcfpas-weights} and \autoref{fig:recall-ngcfpas-weights}.
 This is likely because the embeddings for price and categories are never used.
 However, we did have an initial idea, that the convolutions with price and category would be reflected onto users and items, which is seen to give a very minimal effect on the outcome.
-
 
 \begin{figure}
     \includegraphics[width=\linewidth]{figures/graphs/ndcg-pas-weights.png}
@@ -116,16 +115,17 @@ However, we did have an initial idea, that the convolutions with price and categ
 \end{figure}
 
 \subsubsection{Experiment with one convolution}\label{sec:experiment-one-convolution}
-An experiment was conducted to see what influence changing the number of convolutions to one would have on the performance in NDCG and RECALL in the tested methods.
+An experiment was conducted to see what influence changing the number of convolutions to one would have on the performance in NDCG and Recall in the tested methods.
 The only method that is not changed is PUP, as it already runs with one convolution.
 The results from this experiment can be seen in \autoref{tab:one-convolution}.
 For PUP it is the same data as the previous test in \autoref{tab:results-with-many-methods}, as this was already run with only one convolution.
-When comparing the results with the previous experiment in \autoref{tab:results-with-many-methods} that used 3 convolutions for all methods, except PUP which used 1, it can be seen that NGCF and LightGCN performs worse when evaluating them with Recall@50 and NDCG@50.
+When comparing the results with the previous experiment in \autoref{tab:results-with-many-methods} that used 3 convolutions for all methods, it can be seen that NGCF and LightGCN performs worse when evaluating them with Recall@50 and NDCG@50.
 However for NGCF PAS it can be seen that the number of convolutions have little influence on the results.
 Its performance decreased with 0.0001 in Recall@50 and improved with 0.00082 in NDCG@50.
 LGCN PAS performs worse, which can be seen on \autoref{fig:one-con-ndcg} and \autoref{fig:one-con-recall}.
 The results from this experiment show that the benefits of additional convolutions depend on the method.
-NGCF PAS do not benefit from the additional convolutions, but for LightGCN and NGCF the additional convolutions improve their performance.
+NGCF PAS does not benefit from the additional convolutions, but for LightGCN and NGCF the additional convolutions improve their performance.
+This does not conclude that the more convolutions the better, as too many convolutions can average out the users and items individual values.
 \begin{table}[]
     \centering
     \begin{tabular}{|l|l|l|}
@@ -165,5 +165,5 @@ Our initial thought was that this could be caused by the number of convolutions 
 The hypothesis was that because there are only 4 price levels and every item is connected to a price level, then the graph would become hyperconnected after a few convolutions.
 We ran experiments to test how this affected the results and the conclusion was that LGCN PAS actually performed worse with only one convolution which can be seen in \autoref{sec:experiment-one-convolution}.
 Another reason could be that adding additional information to the embeddings creates noise that disturbs the collaborative signals in the model.
-In Price-aware recommendation they use a method inspired by factorization machines to factorize the embeddings and control how much each type of embedding should affect the recommendation.
-Our approach is quite naïve compared to how price-aware recommendation handles the embeddings which is most likely the reason behind why our method did not perform very well.
+In PUP they use a method inspired by factorization machines to factorize the embeddings and control how much each type of embedding should affect the recommendation.
+Our approach is quite naïve compared to how PUP handles the embeddings which is most likely the reason behind why our method did not perform very well.
