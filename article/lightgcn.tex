@@ -16,5 +16,5 @@ Also within the second component the message aggregation is implemented as:
 \end{equation}
 where $e_{u}^{(l)}$ is the embedding of user $u$ at layer $l$.
 LeakyReLU is the nonlinear activation function used in NGCF to allow encoding positive and small negative signals.
-LightGCN shows that NGCF will perform better if the feature transformation is removed, and that the activation function has small effect when feature transformation is included, but if feature transformation is disabled the activation function will have a negative impact on performance.
+LightGCN shows that NGCF will perform better if the feature transformation is removed, and that the activation function has a small effect when feature transformation is included, but if feature transformation is disabled the activation function will have a negative impact on performance.
 LightGCN also shows that NGCF will significantly improve if both the activation function and feature transformation are removed \cite{lightgcn}.

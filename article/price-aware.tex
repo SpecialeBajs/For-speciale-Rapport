@@ -25,7 +25,7 @@ The final purchase prediction $s$ between user $u$ and item $i$ is formulated as
     \end{split}
     \label{eq:price-aware-prediction}
 \end{equation}
-where $e_u$, $e_i$, $e_c$, and $e_p$ is the embeddings for user, item, category and price, respectively.
+where $e_u$, $e_i$, $e_c$, and $e_p$ are the embeddings for user, item, category and price, respectively.
 $\alpha$ is a hyper-parameter used to balance the category branch's influence on the prediction.
 This is also what they call their decoder and is a method inspired by factorization machines \cite{Priceaware}.
 They have two branches in their decoder which are the global an the category branch.

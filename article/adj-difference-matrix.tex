@@ -44,7 +44,7 @@ The adjacency matrix of PUP is as follows:
         R^T & 0
     \end{bmatrix},
 \end{gather}
-where $R \in \mathbb{R}^{I \times U+C+P}$, and $I$, $U$, $C$, and $P$ denotes the number of items, number of users, number of categories, and number of prices, respectively.
+where $R \in \mathbb{R}^{I \times U+C+P}$, and $I$, $U$, $C$, and $P$ denote the number of items, number of users, number of categories, and number of prices, respectively.
 Each entry in $R_{ui}$, $R_{ip}$, $R_{ic}$ is inserted with 1 if there is a connection either between item $i$ and user $u$, item $i$ and price $p$ or item $i$ and category $c$.\\
 An example can be seen on \autoref{tab:Price-aware-adj}, where $u$ indicates a user, $i$ indicates an item, c indicates a category, and p indicates a price.
 It is not possible to have a connection between a user and a category or price, or for a given type to have a connection with itself.

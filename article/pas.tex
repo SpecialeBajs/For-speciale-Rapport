@@ -10,7 +10,7 @@ This extension for LightGCN is called LGCN PAS and the extension of NGCF is call
 The intuition behind the extension is that the graph convolutions will capture the values of categories and prices, so even if we do not use the embeddings for price and category, they will still influence users and items through the convolutions.
 Let the user-item, item-price and item-category interactions matrix be $R \in \mathbb{R}^{I \times U + C + P}$, where $I$ denotes the number of items, $U, C, P$ denotes the number of users, categories and prices.
 Each entry of $R_{ui}$ is 1 if user $u$ has rated item $i$. Otherwise it is 0.
-If there is a connection in $R_{ic}$ or $R_{ip}$ this value is a hyperparameter $x$ defined as:
+If there is a connection in $R_{ic}$ or $R_{ip}$ the value is set to a hyperparameter $x$ defined as:
 \[
     x= 
 \begin{cases}
