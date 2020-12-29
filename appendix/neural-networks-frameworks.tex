@@ -1,5 +1,5 @@
-\section{Python libraries for implementing neural networks}
-During this project, we examined two implementations of recommendation systems which were LightGCN and PUP. 
+\section{Python libraries for implementing neural networks}\label{app:python-lib}
+During this project, we examined two implementations of recommendation systems which were LightGCN and PUP.
 The implementations are different from each other because they use different libraries to implement the neural networks.
 The implementation of LightGCN we examined uses TensorFlow and PUP uses PyTorch.
 
@@ -61,7 +61,7 @@ You start by defining every variable that will be present in the neural network.
 This might be the size of the input layer, hidden layers and output layer.
 If you don't have a value to insert for them you still need to define placeholders so that TensorFlow has an idea of the shape and type of them as can be seen on lines 11-30 in \autoref{listing:training-nn-tensorflow}.
 After defining all of the variables you need to define the cost of the neural networks and the optimizer which can be the back propagating algorithm.
-Just like in PyTorch TensorFlow has some optimizers that are already implemented for you which can be seen on lines 33-36 in \autoref{listing:training-nn-tensorflow}. 
+Just like in PyTorch TensorFlow has some optimizers that are already implemented for you which can be seen on lines 33-36 in \autoref{listing:training-nn-tensorflow}.
 After you have defined all of the variables in your neural network you can initialize all of them by calling \textit{$initialize\_all\_variables$}.
 You can then start a training session by instantiating the Session class in TensorFlow.
 To start training you then call run function on the session object with the initialized variables which can be seen on lines 39-45 in \autoref{listing:training-nn-tensorflow}.

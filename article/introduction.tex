@@ -6,6 +6,7 @@ Generally, the most common way to achieve this is to firstly learn latent featur
 Secondly, the embeddings are used for performing predictions.
 \\
 An early model for CF is Matrix Factorization (MF), which embeds user and item ID as vectors and uses the dot product to predict whether a user would like a certain item.
+MF is described in Appendix \autoref{bsc::MF}.
 Though MF models have shown to perform quite well, \cite{NGCF_2019} proposes Neural Graph Collaborative Filtering (NGCF).
 \\
 NGCF argues that earlier models do not integrate the user-item interactions especially the bipartite graph structure in their embeddings.
@@ -26,10 +27,11 @@ Since we got the code for PUP sent to us personally through email we chose to no
 Contact us on email if there are any question surrounding this implementation.
 
 \subsection{Reading guide}
-In Appendix \ref{app:basic-theory} we describe some basic theory about recommender systems, which include Matrix Factorization, Factorization machines, Neural networks and Graph Convolutional Network.
-In \autoref{sec:method} we describe the methods of LightGCN, NGCF and PUP and the differences between these related to the adjacency matrix and the embeddings.
+We suggest you read Appendix \ref{app:basic-theory} first, if you do not have knowledge about the basic theory of recommender systems, which include Matrix Factorization, Factorization machines, Neural networks and Graph Convolutional Network.
+In \autoref{sec:method} we describe the methods LightGCN, NGCF and PUP and the differences between these related to the adjacency matrix and the embeddings.
 Our own extensions are also described in this section.
 \autoref{sec:experiment} describes the experiment, where we use a Yelp Dataset to experiment with our own extensions and existing baselines.
 \autoref{sec:related-work} describes related work.
 \autoref{sec:future-work} describes Future work and what we plan to do in our master thesis.
 Finally in \autoref{sec:conclusion} we conclude on the extensions we created.
+If you have further interest in the frameworks used for implementing the researched recommendation systems a small overview of their workings are described in \autoref{app:python-lib}.
