@@ -1,4 +1,4 @@
-\subsection{Performance comparisons}\label{subsec:performance-com}
+\subsection{Performance comparisons (RQ1)}\label{subsec:performance-com}
 As can be seen on \autoref{tab:results-with-many-methods} LightGCN outperforms all the other methods by a significant amount.
 With our dataset NGCF performs better than PUP by a small amount, even though  PUP in their paper showcased the opposite \cite{Priceaware}.
 This is due to NGCF performing better in our dataset, compared to PUP's result, while PUP also performing worse.
@@ -30,6 +30,7 @@ The figures show that there is not a big difference between the NGCF and NGCF PA
 However for LightGCN and LGCN PAS, there is a large difference.
 LGCN PAS has a large decrease in performance, and the graph fluctuates a lot, and does not improve when training.
 In fact LightGCN performs better by 36.6\% in Recall\@50, 48.3\% in NDCG\@50, 44.4\% in Recall\@100 and 56.3\% in NDCG\@100.
+% Overvejer om vi skal have en konklusion på RQ1 eller om det er nok at have det i overskriften. Så ved de jo at det er dette afsnit som besvarer RQ1
 \begin{figure}
     \includegraphics[width=\linewidth]{figures/graphs/ndcg-50k-lgcn-ngcf-ngcfpas-pas.png}
     \caption{NDCG$@$50k on LightGCN, NGCF, NGCF PAS and PAS.}
@@ -55,7 +56,8 @@ In fact LightGCN performs better by 36.6\% in Recall\@50, 48.3\% in NDCG\@50, 44
 \end{figure}
 
 
-\subsubsection{Hyperparameter experiment}
+\subsection{Hyperparameter experiment (RQ2)}
+% Overvejer om vi skal have en konklusion på RQ1 eller om det er nok at have det i overskriften. Så ved de jo at det er dette afsnit som besvarer RQ1
 As described in \autoref{subsec:simple-extension}, we utilize a hyperparameter that is inserted into the adjacency matrix, whenever there is a connection between the item nodes and category nodes, or item nodes and price nodes.
 Experiments are done with this hyperparameter $x$ in LGCN PAS and NGCF PAS with the values $0.0$, $0.5$, $1.0$ and $2.0$ to see what effect this has on the performance.
 \begin{table*}[h!]
@@ -114,7 +116,7 @@ However, we did have an initial idea, that the convolutions with price and categ
     \label{fig:recall-ngcfpas-weights}
 \end{figure}
 
-\subsubsection{Experiment with one convolution}\label{sec:experiment-one-convolution}
+\subsection{Experiment with one convolution (RQ3)}\label{sec:experiment-one-convolution}
 An experiment was conducted to see what influence changing the number of convolutions to one would have on the performance in NDCG and Recall in the tested methods.
 The only method that is not changed is PUP, as it already runs with one convolution.
 The results from this experiment can be seen in \autoref{tab:one-convolution}.
@@ -154,13 +156,13 @@ This does not conclude that the more convolutions the better, as too many convol
     \label{fig:one-con-recall}
 \end{figure}
 
-\subsubsection{LGCN PAS performance}
+\subsection{LGCN PAS performance}
 As can be seen from the results in the experiments that we ran, our extension of LightGCN called LGCN PAS performed considerably worse than all of the other methods.
 By looking at the graphs \autoref{fig:ndcg-pas-weights} and \autoref{fig:recall-pas-weights} we can see that LGCN PAS does not really improve consistently while training the model.
 When the weights are set to 1 the results from the training process seem random and the performance will fluctuate either negatively or positively for every step.
 The results of the evaluations fluctuate less when the weights are changed but we still don't see a consistent improvement for each step like we see with the other methods in \autoref{fig:ndcg-50k-lgcn-ngcf-ngcfpas-pas} and \autoref{fig:recall-50k-lgcn-ngcf-ngcfpas-pas}.
 There are multiple factors that could be the reasoning behind why LightGCN is unable to handle the additional information added to the adjacency matrix and the embeddings.
-The fact that the evaluation of the model while training yields such inconsistent results could indicate that the additional data is causing noise instead of improving the model. 
+The fact that the evaluation of the model while training yields such inconsistent results could indicate that the additional data is causing noise instead of improving the model.
 Our initial thought was that this could be caused by the number of convolutions that LightGCN performs on the graph.
 The hypothesis was that because there are only 4 price levels and every item is connected to a price level, then the graph would become hyperconnected after a few convolutions.
 We ran experiments to test how this affected the results and the conclusion was that LGCN PAS actually performed worse with only one convolution which can be seen in \autoref{sec:experiment-one-convolution}.
