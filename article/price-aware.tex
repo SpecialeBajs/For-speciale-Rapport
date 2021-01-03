@@ -10,10 +10,10 @@ The edges in $E$ consist of interaction edges $(u, i)$ with $R_{ui} = 1$ if ther
 Traditional Latent Factor Models such as Matrix Factorization only take a single type of edge $(u, i)$ into account.
 This makes them insufficient when multiple types such as $(u, p)$ and $(i, c)$ are introduced \cite{Priceaware}.
 Hereby Yu Zheng et al. use a Graph Neural Network to learn the embeddings so that each node has a separate embedding $e' \in \mathbb{R}^d$ where d is the dimensions of the embeddings.
-In GCN the nodes propagate its nearest neighbors, which could be user-item, item-price or item-category.
+In GCN the nodes propagate their nearest neighbors, which could be user-item, item-price or item-category.
 The embeddings are described in further details in \autoref{subsubsec:price}.
-The intuition about the construction of the embeddings is that the node gets aggregated together with its neighbors and in each layer it will go one step further.
-So for example a price nodes embedding will be aggregated together with all item node embeddings connected with this specific price.
+The intuition behind the construction of the embeddings is that the node gets aggregated together with its neighbors and in each layer it will go one step further.
+So for example a price node embedding will be aggregated together with all item node embeddings connected with this specific price.
 By doing this items with the same price levels are expected to be more similar than items not in the same price level.
 The intuition about the category is the same as with the price.
 The final purchase prediction $s$ between user $u$ and item $i$ is formulated as follows:
