@@ -1,7 +1,7 @@
 \subsection{Price-aware Recommendation with Graph Convolutional Networks}\label{subsec:price-intro}
-Yu Zheng et al. develops an effective method called \textit{Price-aware User Preference-modeling (PUP)} that is used to create recommendations with focus on the price factor \cite{Priceaware}.
+Yu Zheng et al. develops an effective method called \textit{Price-aware User Preference-modeling (PUP)} that is used to create recommendations with a focus on the price factor \cite{Priceaware}.
 There are two main challenges.
-The first is that the preferences of a user on item price are unknown, and can only be seen implicitly by previous purchases.
+The first is that the preferences of a user on item prices are unknown, and can only be seen implicitly by previous purchases.
 The second challenge is that the price of an item largely depends on what category the item is within.
 For the first problem they propose a model that creates a relationship between user-to-item and item-to-price using a Graph Convolutional Network, so that they can propagate the influence of price onto the users.
 For the second problem they solve this by integrating the categories and items into the propagation process.
@@ -10,18 +10,27 @@ The edges in $E$ consist of interaction edges $(u, i)$ with $R_{ui} = 1$ if ther
 Traditional Latent Factor Models such as Matrix Factorization only take a single type of edge $(u, i)$ into account.
 This makes them insufficient when multiple types such as $(u, p)$ and $(i, c)$ are introduced \cite{Priceaware}.
 Hereby Yu Zheng et al. use a Graph Neural Network to learn the embeddings so that each node has a separate embedding $e' \in \mathbb{R}^d$ where d is the dimensions of the embeddings.
-In GCN the nodes propagate its nearest neighbors, which could be user-item, item-price or item-category.
+In GCN the nodes propagate their nearest neighbors, which could be user-item, item-price or item-category.
 The embeddings are described in further details in \autoref{subsubsec:price}.
-The intuition about the construction of the embeddings is that the node gets aggregated together with its neighbors and in each layer it will go one step further.
-So for example a price nodes embedding will be aggregated together with all item node embeddings connected with this specific price.
+The intuition behind the construction of the embeddings is that the node gets aggregated together with its neighbors and in each layer it will go one step further.
+So for example a price node embedding will be aggregated together with all item node embeddings connected with this specific price.
 By doing this items with the same price levels are expected to be more similar than items not in the same price level.
 The intuition about the category is the same as with the price.
 The final purchase prediction $s$ between user $u$ and item $i$ is formulated as follows:
 \begin{equation}
-    s = e^T_u e_i + e^T_u e_p + e^T_i e_p + \alpha (e^T_u e_c + e^T_u e_p + e^T_c e_p),
+    \begin{split}
+        s & = s_{global} + \alpha s_{category} \\
+        s_{global} & = e^T_u e_i + e^T_u e_p + e^T_i e_p \\
+        s_{category} & = e^T_u e_c + e^T_u e_p + e^T_c e_p,
+    \end{split}
     \label{eq:price-aware-prediction}
 \end{equation}
-where $e_u$, $e_i$, $e_c$, and $e_p$ is the embeddings for user, item, category and price, respectively.
-$\alpha$ is a hyper-parameter used to balance the categories influence on the prediction.
+where $e_u$, $e_i$, $e_c$, and $e_p$ are the embeddings for user, item, category and price, respectively.
+$\alpha$ is a hyper-parameter used to balance the category branch's influence on the prediction.
+This is also what they call their decoder and is a method inspired by factorization machines \cite{Priceaware}.
+They have two branches in their decoder which are the global an the category branch.
+The global branch only considers the embeddings of user $u$, item $i$ and price $p$.
+The category branch is then used to find the relationship between a users preference for price levels within certain categories.
+The influence of the category branch is then managed with the hyper parameter $\alpha$.
 The embeddings are described in further detail in \autoref{subsubsec:price}.
 The results of a Top-K Recommendation Performance test showcase that PUP outperforms other state-of-the-art methods such as NGCF with an average improvement of 3.59 \% to 5.97 \% \cite{Priceaware}.

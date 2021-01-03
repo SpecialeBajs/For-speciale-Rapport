@@ -1,10 +1,10 @@
-\section{Adjacency matrix comparisons}\label{subsubsec:lightGCN-adj}
+\subsection{Adjacency matrix comparisons}\label{subsubsec:lightGCN-adj}
 In the following subsection the generated adjacency matrices of LightGCN, NGCF and price aware recommendation are described.
-All three use the adjacency matrix as a representation for a heterogeneous graph, where the value 1 represent a connection between two nodes.
+All three use the adjacency matrix as a representation for a heterogeneous graph, where the value 1 represents a connection between two nodes.
 For LightGCN and NGCF the adjacency matrix is identical.
 A more detailed description of the implementation can be seen in Appendix \ref{app:adj-impl}.
 
-\subsection{LightGCN and NGCF}
+\subsubsection{LightGCN and NGCF}
 The adjacency matrix of LightGCN and NGCF is as follows:
 \begin{gather}
     A =
@@ -15,8 +15,8 @@ The adjacency matrix of LightGCN and NGCF is as follows:
 \end{gather}
 where $R \in \mathbb{R}^{U \times I}$, and $U$ and $I$ denotes the number of users and the number of items summed together.
 Each entry in $R_{ui}$ is inserted with 1, if there is a connection between user $u$ and item $i$.
-An example can be seen on \autoref{tab:LightGCN-adj}, where $u$ indicates an user and $i$ indicates an item.
-As seen it is not possible for a user to have a connection to another user, or an item to connect to another item.
+An example can be seen on \autoref{tab:LightGCN-adj}, where $u$ indicates a user and $i$ indicates an item.
+It is not possible for a user to have a connection to another user, or an item to connect to another item.
 \begin{table}
 
     \[
@@ -35,8 +35,8 @@ As seen it is not possible for a user to have a connection to another user, or a
     \label{tab:LightGCN-adj}
 \end{table}
 
-\subsubsection{Price-aware recommendation}
-The adjacency matrix of Price-aware recommendation is as follows:
+\subsubsection{PUP}
+The adjacency matrix of PUP is as follows:
 \begin{gather}
     A =
     \begin{bmatrix}
@@ -44,10 +44,10 @@ The adjacency matrix of Price-aware recommendation is as follows:
         R^T & 0
     \end{bmatrix},
 \end{gather}
-where $R \in \mathbb{R}^{I \times U+C+P}$, and $I$, $U$, $C$, and $P$ denotes the number of users, number of items, number of categories, and number of prices.
-Each entry in $R_{ui}$, $R_{ip}$, $R_{ic}$ is inserted with 1 if there is a connection either between user $u$ and item $i$, item $i$ and price $p$ or item $i$ and category $c$.\\
-An example can be seen on \autoref{tab:Price-aware-adj}, where $u$ indicates an user, $i$ indicates an item, c indicates a category, and p indicates a price.
-It is not possible to have a connection between an user and a category or price, or for a given type to have a connection with itself.
+where $R \in \mathbb{R}^{I \times U+C+P}$, and $I$, $U$, $C$, and $P$ denote the number of items, number of users, number of categories, and number of prices, respectively.
+Each entry in $R_{ui}$, $R_{ip}$, $R_{ic}$ is inserted with 1 if there is a connection either between item $i$ and user $u$, item $i$ and price $p$ or item $i$ and category $c$.\\
+An example can be seen on \autoref{tab:Price-aware-adj}, where $u$ indicates a user, $i$ indicates an item, c indicates a category, and p indicates a price.
+It is not possible to have a connection between a user and a category or price, or for a given type to have a connection with itself.
 For example the type of item can not connect to another item.
 \begin{table}
     \[
@@ -66,6 +66,6 @@ For example the type of item can not connect to another item.
             \end{block}
         \end{blockarray}
     \]
-    \caption{Example of an adjacency matrix in Price-Aware recommendation}
+    \caption{Example of an adjacency matrix in PUP}
     \label{tab:Price-aware-adj}
 \end{table}

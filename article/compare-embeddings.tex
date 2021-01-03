@@ -1,16 +1,15 @@
 \subsection{Embeddings comparison}
-In the following subsections the embeddings of LightGCN, NGCF and Price-aware recommendation are described.
-Unlike with the adjacency matrices, the difference between the embeddings of NGCF and LightGCN are significant here.
-For all nodes including categories and prices, the only value used is the node ID.
-They utilize the embedding layer to compress the one-hot ID encoding to embeddings, so that each node has a separate embedding $e' \in \mathbb{R}^d$, where $d$ is the dimension size.
+Unlike with the adjacency matrices, the difference between the embeddings in NGCF, LightGCN and PUP are significant.
+The only value used for all nodes in the different methods are the node ID's.
+They utilize the embedding layer to compress the one-hot ID encoding to embeddings, so that each node has a separate embedding $e' \in \mathbb{R}^d$, where $d$ is the embedding size \cite{Priceaware,lightgcn}.
 
 \subsubsection{LightGCN}\label{subsubsec:lightgcn-embedding}
 The embeddings for LightGCN are constructed as follows \cite{lightgcn},
 \begin{equation}
     E^{(k+1)} = (D^{\frac{1}{2}}AD^{\frac{1}{2}}E^{(k)}),
 \end{equation}
-where $A$ is the adjacency matrix containing users and items (described in \autoref{subsubsec:lightGCN-adj}) and $D$ is a diagonal matrix, where $D_{ii}$ denotes the sum of the $i-th$ row in the adjacency matrix $A$.
-The $0th$ layer embedding is initialized as random normalized values, where $E^{(0)} \in R^{(I + U)\times T}$, and $T$ is the embedding size.
+where $A$ is the adjacency matrix containing users and items (described in \autoref{subsubsec:lightGCN-adj}) and $D$ is a diagonal matrix, where $D_{ii}$ denotes the sum of the $i$-$th$ row in the adjacency matrix $A$.
+The $0$-$th$ layer embedding is initialized as random normalized values, where $E^{(0)} \in R^{(I + U)\times d}$, and $d$ is the embedding size.
 The final embedding is obtained as follows,
 
 \begin{equation}
@@ -24,27 +23,27 @@ The embeddings for NGCF are constructed as follows \cite{NGCF_2019},
 \begin{equation}
     \begin{split}
         E^{(l)} = &LeakyReLU((\lambda + I)E^{(l-1)}W_1^{(l)}+\\
-        & \lambda E^{(l-1)}\bigodot E^{(l-1)}W_2^{(l))},
+        & \lambda E^{(l-1)}\odot E^{(l-1)}W_2^{(l))},
     \end{split}
 \end{equation}
-where $E^{(l)} \in \mathbb{R}^{I+U \times T}$ are the item and user embeddings after $l$ convolutions.
-$E^{(0)} \in \mathbb{R}^{I+U \times T}$ is the $0th$ layer embedding, where $T$ is the embedding size.
+where $E^{(l)} \in \mathbb{R}^{I+U \times d}$ are the item and user embeddings after $l$ convolutions.
+$E^{(0)} \in \mathbb{R}^{I+U \times d}$ is the $0$-$th$ layer embedding, where $d$ is the embedding size.
 $I$ is the identity matrix.
 $W_1^{(l)}$ and $W_2^{(l)}$ are trainable weight matrices.
-$\lambda$ is the Laplacian matrix for the user-item, item-price and item-category graph, and is defined as follows:
+$\lambda$ is the Laplacian matrix for the user-item graph, and is defined as follows:
 \begin{equation}
     \lambda = D^{\frac{1}{2}}AD^{\frac{1}{2}},
 \end{equation}
 where $A$ and $D$ are the adjacency and diagonal matrix.
 
-\subsubsection{Price-aware recommendation}\label{subsubsec:price}
-The input parameters when constructing the embeddings are the adjacency matrix $A \in \mathbb{R}^{N \times N}$ and identity matrix $I \in \mathbb{R}^{N \times N}$, where $N$ is the number of nodes.
-Embeddings from node j to node i are propagated as follows \cite{Priceaware},
+\subsubsection{PUP}\label{subsubsec:price}
+The input parameters when constructing the embeddings are the adjacency matrix $A \in \mathbb{R}^{N \times N}$ and the identity matrix $I \in \mathbb{R}^{N \times N}$, where $N$ is the number of nodes.
+Embeddings from node $j$ to node $i$ are propagated as follows \cite{Priceaware},
 \begin{equation}
     t_{ji} = \frac{1}{|\mathcal{N}_i|}e'_j,
 \end{equation}
-where $\mathcal{N}_i$ is the set of neighbors for node $i$ and $e'_j$ is the embedding node j.
-The updating rule is,
+where $\mathcal{N}_i$ is the set of neighbors for node $i$ and $e'_j$ is the embedding for node j.
+The updating rule is formulated as follows,
 \begin{equation}
     \begin{split}
         & o_u = \sum_{j \in \{i \textrm{ with } R_{ui}=1 \} \cup \{ u\}}^{} t_{ju}                            \\
@@ -58,6 +57,6 @@ where $e_u$, $e_i$, $e_c$, and $e_p$ are the embeddings for user $u$, item $i$, 
 These embeddings are used to compute the predictions as described in \autoref{subsec:price-intro}.
 
 \subsubsection{Differences in embeddings}
-The difference between NGCF and LightGCN are that NGCF utilizes the $LeakyReLU$ activation function as well as using the trainable weight matrices.
-While NGCF and LightGCN are constructed for collaborative filtering without additional side information, the construction of the embeddings in Price-Aware recommendation focuses on constructing additional embeddings for both price and category, and utilizing these to compute predictions.
+The difference between NGCF and LightGCN are that NGCF utilizes the $LeakyReLU$ activation function as well as feature transformation.
+While NGCF and LightGCN are constructed for collaborative filtering without additional side information, the construction of the embeddings in PUP recommendation focuses on constructing additional embeddings for both price and category, and utilizing these to compute predictions.
 

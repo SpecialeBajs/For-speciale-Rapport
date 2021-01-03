@@ -1,11 +1,11 @@
-\section{Related work}
+\section{Related work}\label{sec:related-work}
 In this section we take a look at existing work that relates to what we have studied to acquire the knowledge to extend the LightGCN model.
 
 \subsection{Collaborative Filtering}
 Collaborative Filtering (CF) is one of the most prevalent techniques in current recommendation systems \cite{YT_rec,NGCF_2019,Pint_rec,COL_MEM_NET}.
-One of the most common ways to achieve CF is by parameterizing users and items as embeddings and afterwards learning the embedding parameters by reconstructing historical user-item interaction from these embeddings \cite{NGCF_2019}.
+One of the most common ways to achieve CF is by parameterizing users and items as embeddings and afterwards learning the embedding parameters by reconstructing historical user-item interactions from these embeddings \cite{NGCF_2019}.
 One of the earliest CF models was Matrix Factorization (MF) \cite{Matrix-factorization-techniques, BAY_PER_RAN}.
-MF  projects the ID of each user and item into embedding vectors and uses the dot product between them to predict an user-item interaction.
+MF  projects the ID of each user and item into embedding vectors and uses the dot product between them to predict a user-item interaction.
 While the dot product can be used to predict user-item interactions its linearity makes it unable to capture more complex relationships between users and items.
 Newer more sophisticated techniques utilize neural networks to enhance the interaction modeling while keeping the same embedding as the older MF models.
 Some examples of this are the NMF model \cite{NEU_COL_FIL} which uses nonlinear neural networks as its interaction function and the LRML model \cite{LAT_REL_MET} which utilizes Euclidean distance metrics to model the interaction strength.
@@ -24,7 +24,7 @@ HOP-Rec's better performance compared to MF models indicates that utilizing the 
 Graph Neural Networks (GNN) provide new ideas on how to model graph structure to guide the embedding learning.
 One such approach is GraphSAGE \cite{IND_REP_LEA} which aggregates feature information from a node's neighborhood e.g. degrees or text attributes.
 Because of the strengths related to graph convolution, a lot of effort has gone into creating recommendation systems \cite{NGCF_2019,GC_MC,Priceaware}, utilizing GCN on the user-item interaction graph to better capture CF signals in high-hop neighbors.
-But Wu et al. \cite{SGCN} argues that GCN is unnecessarily complex and proposes a simplified linear model they call Simple Graph Convolution that removes the nonlinearity of GCN and merges multiple weights into one.
+But Wu et al. \cite{SGCN} argues that GCN is unnecessarily complex and proposes a simplified linear model they call Simple Graph Convolution (SGC) that removes the nonlinearity of GCN and merges multiple weights into one.
 Based on this article and others \cite{PRE_PROP,DEEP_GCN}, HE et al. \cite{lightgcn} proposes LightGCN.
 LightGCN and SGC seem similar but SGC is for node classification and simplifies GCN for efficiency and interpretability, while LightGCN is for CF.
 Nonlinearity and weight matrices are not useful for CF and make model training less effective.
