@@ -7,18 +7,18 @@ Secondly, the embeddings are used for performing predictions.
 \\
 An early model for CF is Matrix Factorization (MF), which embeds user and item ID as vectors and uses the dot product to predict whether a user would like a certain item.
 MF is described in Appendix \autoref{bsc::MF}.
-Though MF models have shown to perform quite well, \cite{NGCF_2019} proposes Neural Graph Collaborative Filtering (NGCF).
+Though MF models have shown to perform quite well, NGCF proposes Neural Graph Collaborative Filtering (NGCF) \cite{NGCF_2019}.
 \\
 NGCF argues that earlier models do not integrate the user-item interactions especially the bipartite graph structure in their embeddings.
 Therefore missing out on collaborative signals which could aid in recommendation.
 By utilizing a Graph Convolutional Network (GCN) they are able to achieve great performance compared to other baselines.
 \\
 GCN's have become the new state-of-the-art method for CF but the reasoning behind their effectiveness is not fully understood \cite{lightgcn}.
-Through empirical testing, \cite{lightgcn} shows that feature transformation and nonlinear activation functions, the two most common designs in GCN's, do very little to contribute to the accuracy of the predictions.
+Through empirical testing, LightGCN shows that feature transformation and nonlinear activation functions, the two most common designs in GCN's, do very little to contribute to the accuracy of the predictions \cite{lightgcn}.
 They then go on to propose a simple implementation of GCN called LightGCN which achieves even better performance than its more complex GCN counterpart.
 \\
-Looking at papers such as \cite{Priceaware} it can be seen that propagating the influence of price on users with items as a bridge, as well as integrating categories into the propagation progress increases the performance.
-Since \cite{Priceaware} also utilizes a GCN our idea is to improve the performance of the LightGCN framework by utilizing price and category.
+Looking at the paper Price-Aware Recommendation with Graph Convolutional network it can be seen that propagating the influence of price on users with items as a bridge, as well as integrating categories into the propagation progress increases the performance \cite{Priceaware} .
+Since Price-Aware Recommendation also utilizes a GCN our idea is to improve the performance of the LightGCN framework by utilizing price and category \cite{Priceaware}.
 
 We try to extend LightGCN and NGCF by adding price and categories to the embeddings and adjacency matrix.
 The code for LightGCN and NGCF and the changes that we made can be seen on Github \footnote{Github link to LightGCN with our extension: https://github.com/SpecialeBajs/LightGCN}.
@@ -27,7 +27,7 @@ Since we got the code for PUP sent to us personally through email we chose to no
 Contact us on email if there are any question surrounding this implementation.
 
 \subsection{Reading guide}
-We suggest you read Appendix \ref{app:basic-theory} first, if you do not have knowledge about the basic theory of recommender systems, which include Matrix Factorization, Factorization machines, Neural networks and Graph Convolutional Network.
+We suggest you read Appendix \ref{app:basic-theory} first, if you do not have knowledge about the basic theory of recommender systems, which includes Matrix Factorization, Factorization machines, Neural networks and Graph Convolutional Network.
 In \autoref{sec:method} we describe the methods LightGCN, NGCF and PUP and the differences between these related to the adjacency matrix and the embeddings.
 Our own extensions are also described in this section.
 \autoref{sec:experiment} describes the experiment, where we use a Yelp Dataset to experiment with our own extensions and existing baselines.

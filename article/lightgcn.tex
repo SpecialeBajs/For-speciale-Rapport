@@ -9,7 +9,7 @@ Within the second component of message construction the message embedding is imp
 where $W_1$ and $W_2 \in R^{d' \times d}$ are weight matrices, $d$ is the embedding size and $d'$ is the transformation size.
 $\frac{1}{\sqrt{|\mathcal{N}_u||\mathcal{N}_i|}}$ is the graph Laplacian norm, where $\mathcal{N}_u$ and $\mathcal{N}_i$ are the set of neighbors of user $u$ and item $i$.
 This is done with the purpose of calculating how much the item contributes to the users preference \cite{NGCF_2019}.
-LightGCN criticize the use of the weight matrices $W_1$ and $W_2$ as not being useful for CF as each user-item interaction graph only has the ID as input and it has no semantic value \cite{lightgcn}.
+LightGCN criticize the use of feature transformation in the form of weight matrices $W_1$ and $W_2$ as not being useful for CF as each user-item interaction graph only has the ID as input and it has no semantic value \cite{lightgcn}.
 Also within the second component the message aggregation is implemented as:
 \begin{equation}
     e_{u}^{(l)} = \mbox{LeakyReLU}(m^{(l)}_{u \leftarrow u} + \sum^{}_{i \in \mathcal{N}} m^{(l)}_{u \leftarrow i}),
